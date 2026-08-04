@@ -40,6 +40,14 @@ def test_squares_reject_words_and_numbers():
     assert squares_in("about -1.5") == []
 
 
+def test_squares_uci_second_half_only_after_a_real_square():
+    # the digit-before-square branch must open for UCI and stay shut for everything else
+    assert squares_in("g1f3 then b8c6") == ["g1", "f3", "b8", "c6"]
+    assert squares_in("e7e8q promotes") == ["e7", "e8"]
+    assert squares_in("build 2026a1") == []
+    assert squares_in("issue 12e4") == []
+
+
 def test_squares_dedupe_preserves_order():
     assert squares_in("d4 then e5 then d4 again") == ["d4", "e5"]
 

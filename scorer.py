@@ -65,10 +65,13 @@ def _square_ok(text: str, start: int, end: int) -> bool:
 
     if prev:
         if prev.isdigit():
-            return False                     # "12a3" — not a square
-        if prev.isalpha() and prev not in SAN_PREFIX:
-            # allow the second half of a UCI move: e2e4 -> prev='2', handled above;
-            # here prev is a letter, so only SAN prefixes qualify
+            # A digit before a square is only legal as the rank of the FROM-square of a
+            # UCI move: "e2e4" -> the "e4" match has prev='2', and text[start-2:start]
+            # is itself the square "e2". Anything else ("12a3", "2026a1") is not a square.
+            if not (start >= 2 and text[start - 2] in FILES and prev in RANKS
+                    and _square_ok(text, start - 2, start)):
+                return False
+        elif prev.isalpha() and prev not in SAN_PREFIX:
             return False
     if nxt:
         if nxt.isdigit():
