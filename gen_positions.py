@@ -50,6 +50,9 @@ MARGIN_CP = 150
 # Minimum material swing for a "hanging piece" to count as hanging at all.
 MIN_SWING_CP = 150
 LABEL_DEPTH = 18        # depth for the authoritative label
+PREFILTER_DEPTH = 10    # cheap pass that decides whether the label is worth computing
+PREFILTER_MARGIN_CP = 100   # deliberately looser than MARGIN_CP so the prefilter cannot
+                            # reject something the authoritative pass would have kept
 WALK_DEPTH = 6          # depth for the guided random walk (cheap)
 WALK_WINDOW_CP = 200    # sample uniformly among moves within this of best
 BLUNDER_RATE = 0.30     # per-ply chance of a uniformly random legal move instead
@@ -147,6 +150,34 @@ def analyse_top2(engine, board, depth):
     return infos
 
 
+def stackless(board: chess.Board) -> chess.Board:
+    """A board with the same position and NO move history.
+
+    python-chess sends a board with a move stack to the engine as
+    `position fen <root> moves ...`, i.e. it replays the history rather than
+    setting the position. Anything that edits board state directly (below) is
+    then silently discarded — the engine analyses the pre-edit position. Every
+    board handed to the engine for labelling goes through here.
+    """
+    return chess.Board(board.fen())
+
+
+def null_moved(board: chess.Board) -> Optional[chess.Board]:
+    """The position with the side to move passed — the vulnerability probe.
+
+    Built from the FEN, not by mutating a copy, for the reason in stackless().
+    Returns None when passing is not a legal thing to ask about.
+    """
+    piece_placement, turn, castling, _ep, _half, full = board.fen().split()
+    flipped = "b" if turn == "w" else "w"
+    probe = chess.Board(" ".join([piece_placement, flipped, castling, "-", "0", full]))
+    if not probe.is_valid():        # the side that just passed was in check — illegal
+        return None
+    if probe.is_check():            # opponent is already in check; a different motif
+        return None
+    return probe
+
+
 def stockfish_version(path: str) -> str:
     try:
         out = subprocess.run([path], input="uci\nquit\n", capture_output=True, text=True, timeout=10).stdout
@@ -178,7 +209,7 @@ def random_walk(engine, rng: random.Random, max_plies: int) -> list[tuple[chess.
         if rng.random() < BLUNDER_RATE:
             mv = rng.choice(legal)
         else:
-            infos = engine.analyse(board, chess.engine.Limit(depth=WALK_DEPTH), multipv=5)
+            infos = engine.analyse(stackless(board), chess.engine.Limit(depth=WALK_DEPTH), multipv=5)
             if isinstance(infos, dict):
                 infos = [infos]
             best = cp_from_pov(infos[0]["score"], board.turn)
@@ -225,16 +256,32 @@ def label_mate_in_1(board: chess.Board) -> Optional[dict]:
 def label_hanging(engine, board: chess.Board, direction: str) -> Optional[dict]:
     """direction='opportunity': side to move can win material.
        direction='vulnerability': side to move is ABOUT to lose material (null-move probe)."""
-    probe = board
     if direction == "vulnerability":
-        probe = board.copy()
-        probe.turn = not board.turn
-        probe.ep_square = None
-        if probe.is_check() or not probe.is_valid():
-            return None        # null move illegal here; skip
+        probe = null_moved(board)
+        if probe is None:
+            return None
+    else:
+        probe = stackless(board)
 
     if probe.is_game_over():
         return None
+
+    # cheap structural prefilter: depth-18 multipv on every snapshot is ~8s and most
+    # snapshots are not scoreable. A shallow pass rejects those for ~50ms. The
+    # authoritative label is still the depth-LABEL_DEPTH analysis below; this only
+    # decides what is worth spending it on.
+    quick = analyse_top2(engine, probe, PREFILTER_DEPTH)
+    if len(quick) < 2:
+        return None
+    q_best = cp_from_pov(quick[0]["score"], probe.turn)
+    q_second = cp_from_pov(quick[1]["score"], probe.turn)
+    if q_best is None or q_second is None:
+        return None
+    if not probe.is_capture(quick[0]["pv"][0]):
+        return None
+    if q_best - q_second < PREFILTER_MARGIN_CP:
+        return None
+
     infos = analyse_top2(engine, probe, LABEL_DEPTH)
     if len(infos) < 2:
         return None
@@ -242,7 +289,11 @@ def label_hanging(engine, board: chess.Board, direction: str) -> Optional[dict]:
     second_cp = cp_from_pov(infos[1]["score"], probe.turn)
     if best_cp is None or second_cp is None:
         return None
-    if abs(best_cp) >= 90000:  # mate line — that is the mate motif, not this one
+    # A mate score on EITHER side of the margin makes this a mate position wearing a
+    # hanging-piece costume. If the second-best move loses to mate, margin is ~99000 and
+    # severity_cp — which is what the severity stratum is cut on — stops describing how
+    # much material is hanging and starts describing how fast the alternative loses.
+    if abs(best_cp) >= 90000 or abs(second_cp) >= 90000:
         return None
     margin = best_cp - second_cp
     if margin < MARGIN_CP:
@@ -295,6 +346,7 @@ def stratum_key(p: Position) -> tuple:
 def generate(n: int, seed: int, max_per_stratum: int, verbose: bool = True) -> list[Position]:
     rng = random.Random(seed)
     engine = chess.engine.SimpleEngine.popen_uci(STOCKFISH)
+    engine.configure({"Threads": 4, "Hash": 256})
     version = stockfish_version(STOCKFISH)
     out: list[Position] = []
     seen_fen: set[str] = set()
