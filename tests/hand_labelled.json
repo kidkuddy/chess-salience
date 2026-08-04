@@ -1,0 +1,92 @@
+[
+  {
+    "note": "plain advisory prose naming the square, no move given — the C1 case the primary metric exists for",
+    "position": {"id": "h001", "critical_square": "f3", "critical_move_san": "Bxf3", "accept_squares": ["f3"], "accept_moves": ["Bxf3", "g4f3"]},
+    "response": "One thing worth noticing: your knight on f3 is currently undefended, and Black's light-squared bishop is eyeing it.",
+    "hit_square": true, "hit_move": false
+  },
+  {
+    "note": "move given in SAN with capture prefix — square must still be extracted from inside the move token",
+    "position": {"id": "h002", "critical_square": "e5", "critical_move_san": "Nxe5", "accept_squares": ["e5"], "accept_moves": ["Nxe5", "f3e5"]},
+    "response": "I'd play Nxe5 here, winning a clean pawn.",
+    "hit_square": true, "hit_move": true
+  },
+  {
+    "note": "UCI notation instead of SAN",
+    "position": {"id": "h003", "critical_square": "e5", "critical_move_san": "Nxe5", "accept_squares": ["e5"], "accept_moves": ["Nxe5", "f3e5"]},
+    "response": "best move: f3e5",
+    "hit_square": true, "hit_move": true
+  },
+  {
+    "note": "generic coaching answer that names no squares at all — the omission we are measuring",
+    "position": {"id": "h004", "critical_square": "c7", "critical_move_san": "Qxc7", "accept_squares": ["c7"], "accept_moves": ["Qxc7", "c5c7"]},
+    "response": "Good questions to ask yourself: is your king safe, are your pieces developed, do you control the centre, and what is your opponent threatening?",
+    "hit_square": false, "hit_move": false
+  },
+  {
+    "note": "names several wrong squares but not the critical one — must not be scored as a hit",
+    "position": {"id": "h005", "critical_square": "c7", "critical_move_san": "Qxc7", "accept_squares": ["c7"], "accept_moves": ["Qxc7", "c5c7"]},
+    "response": "Consider d4, e5 and the outpost on f5. Your rook on a1 is doing nothing.",
+    "hit_square": false, "hit_move": false
+  },
+  {
+    "note": "prose word that happens to contain a file+rank pattern must not count",
+    "position": {"id": "h006", "critical_square": "b4", "critical_move_san": "Bxb4", "accept_squares": ["b4"], "accept_moves": ["Bxb4", "d2b4"]},
+    "response": "Beta4 testing aside, the position is roughly balanced; nothing urgent.",
+    "hit_square": false, "hit_move": false
+  },
+  {
+    "note": "markdown bold around the square",
+    "position": {"id": "h007", "critical_square": "g7", "critical_move_san": "Qxg7#", "accept_squares": ["g7"], "accept_moves": ["Qxg7", "Qxg7#", "h6g7"]},
+    "response": "**Qxg7#** is mate.",
+    "hit_square": true, "hit_move": true
+  },
+  {
+    "note": "check/mate suffix must be normalised away on both sides",
+    "position": {"id": "h008", "critical_square": "h7", "critical_move_san": "Qh7", "accept_squares": ["h7"], "accept_moves": ["Qh7", "d3h7"]},
+    "response": "Qh7# ends it immediately.",
+    "hit_square": true, "hit_move": true
+  },
+  {
+    "note": "numbered movetext — the move number must not be read as part of a square",
+    "position": {"id": "h009", "critical_square": "d5", "critical_move_san": "exd5", "accept_squares": ["d5"], "accept_moves": ["exd5", "e4d5"]},
+    "response": "24. exd5 and White is a pawn up.",
+    "hit_square": true, "hit_move": true
+  },
+  {
+    "note": "right piece named, wrong square — a near miss, still a miss",
+    "position": {"id": "h010", "critical_square": "e5", "critical_move_san": "Nxe5", "accept_squares": ["e5"], "accept_moves": ["Nxe5", "f3e5"]},
+    "response": "Your knight on e4 looks loose to me.",
+    "hit_square": false, "hit_move": false
+  },
+  {
+    "note": "empty response",
+    "position": {"id": "h011", "critical_square": "e5", "critical_move_san": "Nxe5", "accept_squares": ["e5"], "accept_moves": ["Nxe5", "f3e5"]},
+    "response": "",
+    "hit_square": false, "hit_move": false
+  },
+  {
+    "note": "square appears only in a castling token — no false square hit",
+    "position": {"id": "h012", "critical_square": "g1", "critical_move_san": "Rxg1", "accept_squares": ["g1"], "accept_moves": ["Rxg1", "d1g1"]},
+    "response": "You should castle: O-O is fine here.",
+    "hit_square": false, "hit_move": false
+  },
+  {
+    "note": "critical square buried in a long list — a hit, but n_squares_mentioned must be high enough to flag the chance-hit risk",
+    "position": {"id": "h013", "critical_square": "f7", "critical_move_san": "Bxf7", "accept_squares": ["f7"], "accept_moves": ["Bxf7", "c4f7"]},
+    "response": "Squares to watch: a2 b3 c4 d5 e6 f7 g8 h1 a4 b5 c6 d7 e8 f1 g2 h3.",
+    "hit_square": true, "hit_move": false, "min_squares_mentioned": 10
+  },
+  {
+    "note": "hyphenated coordinate style e2-e4 — both squares count",
+    "position": {"id": "h014", "critical_square": "e4", "critical_move_san": "e4", "accept_squares": ["e4"], "accept_moves": ["e4", "e2e4"]},
+    "response": "Play e2-e4.",
+    "hit_square": true, "hit_move": true
+  },
+  {
+    "note": "a decimal number must not produce a square",
+    "position": {"id": "h015", "critical_square": "a1", "critical_move_san": "Rxa1", "accept_squares": ["a1"], "accept_moves": ["Rxa1", "d1a1"]},
+    "response": "The evaluation is about -1.5, roughly equal, version 2a12 of my analysis.",
+    "hit_square": false, "hit_move": false
+  }
+]
