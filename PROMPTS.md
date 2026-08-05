@@ -1,7 +1,8 @@
 # Verbatim prompt set — chess salience experiment
 
-*Drafted 2026-08-04. **Not yet approved.** Nothing is run against a paid model until the user has
-read this file. Once approved it is frozen and committed as part of the pre-registration.*
+*Drafted 2026-08-04. **Approved and frozen 2026-08-05T18:02+01:00**, committed as part of the
+pre-registration. Every prompt below is verbatim what is sent; `run_pilot.py` imports these strings
+rather than restating them, so drift between this file and the runner is not possible.*
 
 Everything here is verbatim. `{{POSITION}}` is the only substitution, and it is filled with exactly
 one of the three format blocks in §1. No other text differs between conditions.
