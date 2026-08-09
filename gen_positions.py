@@ -343,7 +343,16 @@ def stratum_key(p: Position) -> tuple:
     return (p.motif, p.threat_direction, p.severity_band, p.phase, p.side_to_move)
 
 
-def generate(n: int, seed: int, max_per_stratum: int, verbose: bool = True) -> list[Position]:
+def generate(n: int, seed: int, max_per_stratum: int, verbose: bool = True,
+             per_band: int | None = None) -> list[Position]:
+    """Collect n labelled positions by random walk.
+
+    per_band caps how many positions each severity band may contribute, so the
+    three bands come out balanced rather than in their natural yield ratio
+    (the day-1 pilot drew 19 minor / 15 major / 6 decisive, and that imbalance
+    is what EXPLORATORY.md §4 fixes). Sampling design, set before any position
+    exists; it never discards a position after the fact.
+    """
     rng = random.Random(seed)
     engine = chess.engine.SimpleEngine.popen_uci(STOCKFISH)
     engine.configure({"Threads": 4, "Hash": 256})
@@ -351,6 +360,7 @@ def generate(n: int, seed: int, max_per_stratum: int, verbose: bool = True) -> l
     out: list[Position] = []
     seen_fen: set[str] = set()
     strata: dict[tuple, int] = {}
+    bands: dict[str, int] = {}
     walk_id = 0
     try:
         while len(out) < n:
@@ -388,10 +398,13 @@ def generate(n: int, seed: int, max_per_stratum: int, verbose: bool = True) -> l
                         "critical_move_uci", "critical_square", "critical_piece",
                         "margin_cp", "accept_squares", "accept_moves")},
                 )
+                if per_band is not None and bands.get(pos.severity_band, 0) >= per_band:
+                    continue
                 sk = stratum_key(pos)
                 if strata.get(sk, 0) >= max_per_stratum:
                     continue
                 strata[sk] = strata.get(sk, 0) + 1
+                bands[pos.severity_band] = bands.get(pos.severity_band, 0) + 1
                 seen_fen.add(key_fen)
                 out.append(pos)
                 if verbose:
@@ -409,12 +422,14 @@ def main():
     ap.add_argument("--out", default="data/positions.jsonl")
     ap.add_argument("--seed", type=int, default=20260804)
     ap.add_argument("--max-per-stratum", type=int, default=8)
+    ap.add_argument("--per-band", type=int, default=None,
+                    help="cap positions per severity band (EXPLORATORY.md SS4 balance)")
     args = ap.parse_args()
 
     if not os.path.exists(STOCKFISH):
         sys.exit(f"stockfish not found at {STOCKFISH}; set STOCKFISH_PATH")
 
-    positions = generate(args.n, args.seed, args.max_per_stratum)
+    positions = generate(args.n, args.seed, args.max_per_stratum, per_band=args.per_band)
     os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
     with open(args.out, "w") as f:
         for p in positions:
