@@ -90,6 +90,25 @@ frozen.
 5. **C2 sensitivity test.** The same slope on C2 rows only. The claim predicts a CI
    **excluding** 0 and positive.
 
+## 5b. Power at 30 positions per band — computed 2026-08-09, before the run
+
+Monte-Carlo, resampling the pilot's position-level rates within band, 9 calls per cell,
+asking how often a cluster-bootstrap 95% CI on that band's RD excludes 0:
+
+| band | pilot n_pos | pilot p(C1) | pilot p(C2) | pilot RD | n=20 | **n=30** | n=40 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| minor | 11 | 0.889 | 0.859 | −0.030 | 0.01 | **0.01** | 0.00 |
+| major | 7 | 0.778 | 0.905 | +0.127 | 0.70 | **0.88** | 0.94 |
+| decisive | 5 | 0.867 | 1.000 | +0.133 | 1.00 | **1.00** | 1.00 |
+
+(Position-level rates, so these differ slightly from the call-level table in §1 — the
+position is the pre-registered unit of analysis and equal-weights positions, not calls.)
+
+30 per band is adequate: ~0.88 power on major and effectively 1.00 on decisive, where
+C2's near-ceiling rate collapses the variance. The minor row is not a failure — a
+correctly-behaved 1% is what a genuinely null band should produce, and it is the
+within-study control that says the other two bands are not an artifact of the method.
+
 ## 6. What counts as support — all four, or it is not support
 
 - the interaction contrast `RD_decisive − RD_minor` (§5.3) has a 95% CI excluding 0, **and**
