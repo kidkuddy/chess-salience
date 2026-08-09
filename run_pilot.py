@@ -140,9 +140,13 @@ async def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--probe", action="store_true", help="one call per condition, then stop")
     ap.add_argument("--concurrency", type=int, default=8)
+    ap.add_argument("--positions", default=str(POSITIONS),
+                    help="position set to run (default: the day-1 pilot's)")
+    ap.add_argument("--out", default=str(OUT),
+                    help="raw output; resumed from if it already exists")
     args = ap.parse_args()
 
-    positions = [json.loads(l) for l in POSITIONS.read_text().splitlines() if l.strip()]
+    positions = [json.loads(l) for l in Path(args.positions).read_text().splitlines() if l.strip()]
     jobs = jobs_for(positions)
 
     if args.probe:
@@ -155,7 +159,7 @@ async def main() -> None:
         jobs = probe
         out_path = HERE / "data" / "pilot_probe.jsonl"
     else:
-        out_path = OUT
+        out_path = Path(args.out)
         if out_path.exists():
             done = {key(json.loads(l)) for l in out_path.read_text().splitlines() if l.strip()}
             before = len(jobs)
