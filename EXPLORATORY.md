@@ -109,6 +109,31 @@ C2's near-ceiling rate collapses the variance. The minor row is not a failure �
 correctly-behaved 1% is what a genuinely null band should produce, and it is the
 within-study control that says the other two bands are not an artifact of the method.
 
+## 5c. Motif confound in the decisive band — and the sensitivity analysis for it
+
+*Added 2026-08-09 after inspecting the achieved position composition and before any
+outcome from the full run was analysed. It adds a reporting requirement; it does not
+change the §5 tests or the §6 support criterion.*
+
+The achieved set is 30/30/30 by band, but motif is not evenly spread across bands:
+
+| band | hanging | mate_in_1 |
+|---|---:|---:|
+| minor | 30 | 0 |
+| major | 30 | 0 |
+| decisive | 23 | **7** |
+
+Mate-in-1 positions carry a mate score, so `severity_cp` is 100000 and they land in the
+decisive band by construction. That means **23% of the decisive band is a different motif
+from every position in the other two bands**, and a severity effect and a motif effect are
+partly confounded there.
+
+**Required sensitivity analysis:** re-run §5.2 and §5.3 on the decisive band restricted to
+its 23 `hanging` positions. If the decisive RD survives motif-matched, the gradient is
+about severity. If it collapses to the major-band level, the honest reading is that
+mate-in-1 is a different stimulus and the paper says so. Both outcomes are reported; the
+motif-matched number is the one quoted in any sentence that says the word "severity".
+
 ## 6. What counts as support — all four, or it is not support
 
 - the interaction contrast `RD_decisive − RD_minor` (§5.3) has a 95% CI excluding 0, **and**
