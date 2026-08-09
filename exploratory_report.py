@@ -189,6 +189,37 @@ def main() -> None:
         out["interaction"] = {"available": False}
     out["interaction_wald_crosscheck"] = clustered_wald(recs, bands)
 
+    # §5c motif-matched sensitivity on the decisive band ---------------------
+    # All mate_in_1 positions land in decisive by construction (a mate score sets
+    # severity_cp to 100000), so severity and motif are confounded exactly where the
+    # claimed effect is largest. Re-run the decisive band on hanging positions only.
+    motif = {pid: p["motif"] for pid, p in positions.items()}
+    dec_hang = [p for p in paired
+                if bands.get(p) == "decisive" and motif.get(p) == "hanging"]
+    if dec_hang:
+        a1 = np.array([c1[p] for p in dec_hang])
+        a2 = np.array([c2[p] for p in dec_hang])
+        d = a2 - a1
+        idx = rng.integers(0, len(dec_hang), size=(BOOT, len(dec_hang)))
+        draws = d[idx].mean(axis=1)
+        entry = {
+            "n_positions": len(dec_hang),
+            "n_excluded_mate_in_1": per_band["decisive"]["n_positions"] - len(dec_hang),
+            "p_c1": float(a1.mean()), "p_c2": float(a2.mean()),
+            "rd": float(d.mean()), "rd_ci95": ci(draws),
+            "rd_ci_excludes_zero": bool(ci(draws)[0] > 0 or ci(draws)[1] < 0),
+        }
+        if "minor" in rd_draws:
+            contrast = draws - rd_draws["minor"]
+            entry["interaction_vs_minor"] = {
+                "point": float(entry["rd"] - per_band["minor"]["rd"]),
+                "ci95": ci(contrast),
+                "excludes_zero": bool(ci(contrast)[0] > 0 or ci(contrast)[1] < 0),
+            }
+        out["decisive_motif_matched"] = entry
+    else:
+        out["decisive_motif_matched"] = {"available": False}
+
     # §5.4 / §5.5 slopes ----------------------------------------------------
     out["c1_flatness"] = slope_over_bands(
         {b: np.array([c1[p] for p in paired if bands.get(p) == b]) for b in BANDS}, rng)
