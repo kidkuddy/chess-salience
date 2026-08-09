@@ -68,9 +68,21 @@ frozen.
 1. **Descriptive.** p(C1) and p(C2) by band, with cluster-bootstrap 95% CIs over positions
    within band (10,000 resamples, percentile).
 2. **Band-wise effect.** RD = p(C2) − p(C1) within each band, same bootstrap.
-3. **Interaction test.** GLMM `detected ~ condition * severity_band + (1|position) +
-   (1|prompt_variant)`, binomial, logit link. Likelihood-ratio test of the interaction
-   against the additive model `detected ~ condition + severity_band + (1|...)`.
+3. **Interaction test.** The headline is a **cluster-bootstrap CI on the interaction
+   contrast** `RD_decisive − RD_minor`, resampling positions within band, 10,000
+   resamples, 95% percentile. Support requires the CI to exclude 0. Reported alongside,
+   as a parametric cross-check: a binomial GLM with logit link,
+   `detected ~ condition * severity_band`, fitted with position-clustered robust
+   covariance, Wald test on the interaction terms.
+
+   *Amendment, 2026-08-09, made before `data/full_positions.jsonl` existed and before any
+   full-run model call — see git order.* This slot originally specified a GLMM
+   likelihood-ratio test. statsmodels 0.14.6 ships no frequentist binomial GLMM that
+   yields one (`BinomialBayesMixedGLM` is variational Bayes; an LRT is not defined for
+   it). Rather than fake the test or silently drop it, the estimator moves to the cluster
+   bootstrap — which is what `PREREGISTRATION.md` §2 already uses for every confirmatory
+   CI in this study, so the exploratory analysis and the frozen one now share an
+   inferential engine. The frozen document is untouched.
 4. **C1 flatness test.** Severity band as an ordered numeric contrast (minor=0, major=1,
    decisive=2), C1 rows only: slope with bootstrap 95% CI. The claim predicts a CI
    **containing** 0 — an unusual direction to pre-register, and the reason it is written
@@ -80,7 +92,7 @@ frozen.
 
 ## 6. What counts as support — all four, or it is not support
 
-- the interaction LRT (§5.3) is significant at α = 0.05, **and**
+- the interaction contrast `RD_decisive − RD_minor` (§5.3) has a 95% CI excluding 0, **and**
 - band-wise RDs (§5.2) are ordered minor < major < decisive, **and**
 - the decisive-band RD 95% CI excludes 0, **and**
 - the C1 flatness CI (§5.4) contains 0 while the C2 slope CI (§5.5) excludes 0.
