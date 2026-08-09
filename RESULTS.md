@@ -93,10 +93,15 @@ detection by about 7 points **within** each arm — more than the 2-point differ
 of a threat the model can report.** This is a null against the study's own thesis, and it
 was registered as publishable before the data existed.
 
-**The null is informative, not underpowered.** At n = 90 the design had **0.973** power to
+**The null is informative, not underpowered.** At n = 90 the design had **0.985** power to
 detect the pre-registered RD = 0.25 under McNemar planning at the observed discordance
 (0.122); 60 positions would have sufficed. The study could comfortably have found the
 effect it was built to find.
+
+*Power method:* Monte Carlo, 4{,}000 simulations, resampling the run's own per-position
+rates so the simulation inherits the observed between-position heterogeneity rather than
+assuming a common rate, with the C1 rates shifted so the true RD equals the pre-registered
+0.25. For reference the same procedure gives 0.971 at n = 80 and 0.993 at n = 100.
 
 Secondary metric `hit_move`: C1 0.125, C2 0.174, RD +0.049, 95% CI [+0.011, +0.089] —
 a small but interval-excluding-zero advantage to direct interrogation in naming the *move*
