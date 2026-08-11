@@ -87,12 +87,32 @@ def draw(recs, pos, stage: int, rng: random.Random):
     return items
 
 
+def write_ui(tasks, stage: int) -> None:
+    """Assemble label_ui.html for one stage. Always writes the stage it was given, so a
+    stale page from another stage cannot survive."""
+    ui = (HERE / "label_ui.template.html").read_text()
+    ui = ui.replace("/*__TASKS__*/null", json.dumps(tasks))
+    ui = ui.replace("__STAGE__", str(stage))
+    (HERE / "label_ui.html").write_text(ui)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--stage", type=int, required=True, choices=(1, 2, 3))
     ap.add_argument("--raw", default=str(HERE / "data" / "full_raw.jsonl"))
     ap.add_argument("--positions", default=str(HERE / "data" / "full_positions.jsonl"))
+    ap.add_argument("--ui-only", action="store_true",
+                    help="rebuild label_ui.html from the stage's existing tasks file "
+                         "without redrawing it")
     args = ap.parse_args()
+
+    tasks_path = HERE / "data" / f"label_tasks_stage{args.stage}.json"
+    if args.ui_only:
+        if not tasks_path.exists():
+            raise SystemExit(f"{tasks_path.name} does not exist; draw the stage first.")
+        write_ui(json.loads(tasks_path.read_text()), args.stage)
+        print(f"label_ui.html rebuilt for stage {args.stage} from {tasks_path.name}")
+        return
 
     key_path = HERE / "data" / f"label_key_stage{args.stage}.json"
     if key_path.exists():
@@ -131,16 +151,11 @@ def main() -> None:
         t["double_rate"] = True          # flagged for the second rater, LABELLING.md §5
     rng.shuffle(tasks)
 
-    tasks_path = HERE / "data" / f"label_tasks_stage{args.stage}.json"
     tasks_path.write_text(json.dumps(tasks, indent=1) + "\n")
     key_path.write_text(json.dumps(key, indent=1) + "\n")
+    write_ui(tasks, args.stage)
 
-    ui = (HERE / "label_ui.template.html").read_text()
-    ui = ui.replace("/*__TASKS__*/null", json.dumps(tasks))
-    ui = ui.replace("__STAGE__", str(args.stage))
-    (HERE / "label_ui.html").write_text(ui)
-
-    c1 = sum(1 for _, in [(0,)] for k in key.values() if k["condition"] == "C1")
+    c1 = sum(1 for k in key.values() if k["condition"] == "C1")
     print(f"stage {args.stage}: {len(tasks)} items ({c1} advisory, {len(tasks)-c1} direct), "
           f"{N_DOUBLE} flagged for the second rater")
     print(f"  {tasks_path.relative_to(HERE)}")

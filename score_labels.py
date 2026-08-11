@@ -112,6 +112,15 @@ def main() -> None:
         key = json.loads((HERE / "data" / f"label_key_stage{s}.json").read_text())
         tasks = {t["uid"]: t for t in
                  json.loads((HERE / "data" / f"label_tasks_stage{s}.json").read_text())}
+        stray = sorted(set(labels) - set(key))
+        if stray:
+            raise SystemExit(
+                f"stage {s}: {len(stray)} labelled uids are not in "
+                f"label_key_stage{s}.json (e.g. {stray[:3]}). The labels were produced "
+                f"by a label_ui.html built for a different stage. Rebuild it with "
+                f"`build_labelset.py --stage {s} --ui-only` and re-label, or point "
+                f"--stages at the stage those labels actually belong to."
+            )
         for uid, lab in labels.items():
             if lab == "?":
                 unsure += 1
