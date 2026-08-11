@@ -15,9 +15,11 @@ hypothesis this study was built to confirm.
 **That result is currently under challenge from its own metric.** `hit_square` counts the
 critical square appearing anywhere in the response, and a quarter of its hits are board
 transcription rather than detection. Depending on how "detected" is operationalised the
-same data gives a risk difference anywhere from +0.020 to +0.225. `LABELLING.md` is the
-protocol for settling it by hand, and it commits in advance to inverting the conclusion if
-the labels go that way. Read the headline below with that pending.
+same data gives a risk difference anywhere from +0.020 to +0.225. Two frozen protocols
+exist to settle it: `RETROFIT-PREREG.md` does it automatically by asking each model which
+squares its own answer flagged, and `LABELLING.md` does it by hand. Both commit in advance
+to inverting the paper's conclusion if the result goes that way. `ROADMAP.md` has the
+order. Read the headline below with that pending.
 
 This repository holds the whole experiment: the frozen protocol, the generator, the prompts,
 the scorer, the raw model outputs, the analysis, and the results. Every number in
