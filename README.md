@@ -8,8 +8,16 @@ thinking about here?") rather than interrogated ("is anything hanging?"). If mod
 back what they represent, advisory framing is where that should show up. Holding the
 position fixed and varying only the framing, does the model still name the critical square?
 
-The answer is that it does, at statistically equivalent rates. That null was registered in
-advance as a publishable outcome, against the hypothesis this study was built to confirm.
+On the pre-registered metric the answer is that it does, at statistically equivalent
+rates. That null was registered in advance as a publishable outcome, against the
+hypothesis this study was built to confirm.
+
+**That result is currently under challenge from its own metric.** `hit_square` counts the
+critical square appearing anywhere in the response, and a quarter of its hits are board
+transcription rather than detection. Depending on how "detected" is operationalised the
+same data gives a risk difference anywhere from +0.020 to +0.225. `LABELLING.md` is the
+protocol for settling it by hand, and it commits in advance to inverting the conclusion if
+the labels go that way. Read the headline below with that pending.
 
 This repository holds the whole experiment: the frozen protocol, the generator, the prompts,
 the scorer, the raw model outputs, the analysis, and the results. Every number in
@@ -164,3 +172,41 @@ Two documentation inconsistencies worth knowing about:
 
 Model responses in `data/full_raw.jsonl` are outputs of `claude-sonnet-5` collected in
 August 2026 under normal API terms. Session identifiers are present in the records.
+
+## Metric validation (in progress, added 2026-08-11)
+
+The primary metric `hit_square` fires when the engine's critical square appears anywhere
+in the response. Two facts about it surfaced after the run:
+
+- `robustness.py` puts the chance-hit rate at 0.213 (advisory) and 0.180 (direct).
+- Responses often open by transcribing the board, which hits the critical square by
+  construction. Of the 1,334 responses scored `hit_square = True`, 341 (25.6%) never name
+  the critical square anywhere near threat language.
+
+A regex probe over threat vocabulary puts the advisory-direct difference between +0.036
+and +0.225 depending on the word list, against +0.020 for `hit_square` and +0.049 for
+`hit_move`. The conclusion in `RESULTS.md` is therefore metric-dependent, and the metric
+has never been validated against human judgement beyond the 50-response audit in §5.
+
+`LABELLING.md` fixes a protocol for settling that by hand, written before any sampled
+response was read: the construct, the bright lines, a position-paired stratified sample,
+a three-stage stopping rule, and what each outcome means for the paper. It commits in
+advance to inverting the paper's conclusion if the labels go that way.
+
+| file | role |
+|---|---|
+| `LABELLING.md` | the protocol. Read before touching anything else here |
+| `build_labelset.py` | draws a stage, blinds it, writes the tasks, the sealed key and the UI |
+| `label_ui.template.html` | offline labelling tool; no network, no dependencies |
+| `score_labels.py` | unblinds, applies the stopping rule, validates each metric against the labels |
+| `data/label_tasks_stage1.json` | stage 1: 180 items, 90 per arm, 30 per paraphrase per arm |
+| `data/label_key_stage1.json` | the mapping back to arm and paraphrase. Committed before labelling so the draw is timestamped; not to be opened until the labels exist |
+
+```sh
+.venv/bin/python build_labelset.py --stage 1
+open label_ui.html                      # 2 / 1 / 0 / u, exports labels_stage1.json
+.venv/bin/python score_labels.py --stages 1
+```
+
+Until this is done, the equivalence result in `RESULTS.md` should be read as holding for
+`hit_square` specifically rather than for threat detection generally.
