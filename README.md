@@ -173,6 +173,15 @@ Two documentation inconsistencies worth knowing about:
 Model responses in `data/full_raw.jsonl` are outputs of `claude-sonnet-5` collected in
 August 2026 under normal API terms. Session identifiers are present in the records.
 
+## Where this is going
+
+`ROADMAP.md` is the ordered plan: what is done, what is next, what each step costs and
+what it unblocks. Read it first if you are picking this up cold.
+
+The short version: the primary metric is under challenge from its own permissiveness, an
+automatic fix is frozen and ready to run in `RETROFIT-PREREG.md`, and which paper gets
+written is decided by that result rather than by preference.
+
 ## Metric validation (in progress, added 2026-08-11)
 
 The primary metric `hit_square` fires when the engine's critical square appears anywhere
