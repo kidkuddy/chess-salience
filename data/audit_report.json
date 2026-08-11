@@ -1,0 +1,25 @@
+{
+  "n_audited": 50,
+  "agreement": {
+    "hit_square": {
+      "n": 50,
+      "agreed": 49,
+      "agreement": 0.98
+    },
+    "hit_move": {
+      "n": 50,
+      "agreed": 50,
+      "agreement": 1.0
+    }
+  },
+  "disagreements": [
+    {
+      "uid": "C2.b|p0017|r0",
+      "metric": "hit_square",
+      "hand": true,
+      "scorer": false,
+      "critical_square": "d4",
+      "response": "Let me analyze the position.\n\n**FEN:** r4br1/1kpq4/p1pp2p1/5n1p/1PPB4/2N4P/P3QPP1/1R3KNR w - - 3 26\n\n**Hanging pieces:** Black's knight on f5 is not currently attacked by anything. Checking White's pieces: nothing attacks f5, h5, or other black pieces directly right now. Nothing is hanging for either side that I can find on first pass.\n\n**Mate in one?** Looking for a check that's also mate:\n- Qe2-e4? No check.\n- Bd4xa7? Not check.\n- Nc3-d5? Not check, and blocked by pawn c6.\n- Rb1xb7+? Kxb7, not mate.\n\nI don't see a forced mate in one for White in this position. The black king on b7 has escape squares (a8, b8, c8 area covered by rook, but Kb7 could go to a6, a8) and no single move delivers unstoppable check-mate.\n\n**Conclusion:** No piece is hanging, and there is no mate in one available."
+    }
+  ]
+}

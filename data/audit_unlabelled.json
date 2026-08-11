@@ -1,0 +1,667 @@
+[
+ {
+  "uid": "C1.a|p0009|r1",
+  "critical_square": "h6",
+  "critical_move_san": "gxh6",
+  "accept_squares": [
+   "h6"
+  ],
+  "accept_moves": [
+   "g7h6",
+   "gxh6"
+  ],
+  "response": "Let's break this down like a coach would.\n\n**Material check first:** You (Black) grabbed g2 with your queen \u2014 you're up material, likely winning a rook or causing havoc, but the queen is deep in enemy territory near h1/g2 with White's king sitting awkwardly on e2.\n\n**Key questions to ask yourself:**\n1. Is my queen actually trapped? Look at escape squares \u2014 g2, h2, g1 area. Check if Rh1 or Nf3 threatens to seal her in.\n2. What's White's king doing on e2? That's unusual \u2014 can I open lines (like ...Bg4+ or ...Qxf3+ tactics) to exploit it?\n3. Development: you still have pieces on c8, a8, h8 undeveloped. Don't get greedy \u2014 check if grabbing more material (like h3) risks losing the queen for insufficient compensation.\n\n**Priority:** Calculate concretely whether the queen has a safe retreat *before* deciding to grab more pawns. Safety first, then convert the material edge."
+ },
+ {
+  "uid": "C1.b|p0017|r2",
+  "critical_square": "d4",
+  "critical_move_san": "Nxd4",
+  "accept_squares": [
+   "d4"
+  ],
+  "accept_moves": [
+   "Nxd4",
+   "f5d4"
+  ],
+  "response": "**Position read:** You're White, up structurally with the bishop pair-ish setup (bishop vs knight) and a queenside pawn majority (b4/c4 vs a6/c6). Black's king on b7 is a bit exposed, and your rook on b1 already eyes the b-file. Material looks roughly level, but your pieces are more actively placed\u2014Bd4 is strong, hitting toward g7/a7, and Ne2-queen battery could target kingside light squares too.\n\n**Plan:**\n1. **Push the queenside majority**: b4-b5 breaks open lines against the king on b7, especially since c6 is weak.\n2. **Improve minor pieces**: get the g1-knight into play (Nh3-f4 or similar) rather than leaving it passive.\n3. **Watch f5 knight**: it's annoying (eyes d4/e3/g3); consider trading it off or restricting it with h4/g3-ish support.\n4. Keep rooks connected, then double on the b-file for a direct assault on the king.\n\nPrioritize **b5** \u2014 it's your most forcing, king-attacking idea."
+ },
+ {
+  "uid": "C2.a|p0085|r0",
+  "critical_square": "g1",
+  "critical_move_san": "Qxg1#",
+  "accept_squares": [
+   "g1"
+  ],
+  "accept_moves": [
+   "Qxg1",
+   "Qxg1#",
+   "d4g1"
+  ],
+  "response": "Let me analyze this position (Black to move).\n\n**Checking for mate in 1:**\n\nBlack's queen is on d4. Looking for a checking move that's unstoppable:\n\n- **Qxd2+** \u2014 Wait, let's check: Qd4xd2+. King on e1. After Qxd2+, king can go to f1... actually let's verify escape squares. Kxd2 is possible (pawn on d2 is defended by king itself if adjacent... King e1 to d2 is adjacent, so Kxd2 recaptures). Not mate.\n\n- **Qe3+**: King e1, blocked by Bc1 covering... Kd1 possible, or Bxe3? Bishop on c1 doesn't cover e3. Nb1 doesn't cover e3. Kd1 escapes. Not mate.\n\n- **Rxh3**: not check.\n\n**Qxd2+!** Actually check squares around king e1: d1, d2, e2, f1, f2 are king's neighbors (d2 occupied by white pawn). Qxd2+ Kxd2 \u2014 not mate since king recaptures.\n\n**Answer:** No mate in 1 found. Hanging piece: the pawn on **h3** is hanging (undefended), attackable by Rh6."
+ },
+ {
+  "uid": "C2.a|p0049|r1",
+  "critical_square": "h5",
+  "critical_move_san": "Qxh5",
+  "accept_squares": [
+   "h5"
+  ],
+  "accept_moves": [
+   "Qxh5",
+   "d1h5"
+  ],
+  "response": "Let me analyze this position.\n\n**FEN breakdown:**\n- White: Kg1, Qd1, Rb1, Rf1, Bc1, Bh1, Na2, pawns a4,b3,c4,d2,e4,f2,g3,h2\n- Black: Kg8, Qb6, Rb8, Rf8, Bc8, Nc6, Nh5, pawns a6,b7,c5,d6,e6,f7,g5,g7... \n\nWait, let me recount \u2014 g7 and g5 both listed is wrong. Row 7 (rank 7 for black): `1rb2rk1` = rank 8; `1p3pp1` = rank 7: b7,f7,g7 pawns, rook on... no, that's rank 7: empty,pawn(b),empty,empty,empty,pawn(f),pawn(g),empty. Rank 5: `2p3pn` = c5 pawn, g5 pawn, h5 knight.\n\n**Hanging pieces:** Black's Nh5 is undefended and attacked by nothing currently, but check g3 pawn \u2014 g3 doesn't attack h5... actually **Bh1** is aimed at the long diagonal but blocked by g-pawn now on g3? No, g3 is white's own pawn blocking Bh1's diagonal.\n\nNothing is hanging outright, and **no mate in 1** exists here \u2014 Black's king has escape/blocking resources (f8 rook, g7 controlled). No forced mate in one move is available."
+ },
+ {
+  "uid": "C1.c|p0061|r1",
+  "critical_square": "e5",
+  "critical_move_san": "Nxe5",
+  "accept_squares": [
+   "e5"
+  ],
+  "accept_moves": [
+   "Nxe5",
+   "g4e5"
+  ],
+  "response": "Let's orient first: material is roughly balanced, but **your king on e8 is stuck in the center** and White has already castled-in-spirit with a solid pawn chain, while your pieces (Nb4, Ng4, Bb7) are active but scattered.\n\nThe most important thing to check right now: **is anything of yours actually hanging or tactically loose?**\n\nSpecific things to look at:\n- Your Nb4 and Ng4 are both far from defenders \u2014 do they have a retreat/follow-up, or is White threatening a3/h3 forks or discovered attacks?\n- White's Qb3 eyes b7/f7-ish diagonals combined with Na3 \u2014 check for a3 hitting your knight while also loosening b4.\n- d5-pawn is a wedge; d5-d6 could crack open lines toward your king if it stays in the center.\n\nBottom line: **don't calculate your own threats yet \u2014 first make sure Nb4/Ng4 aren't tactically vulnerable to a3 or Bxa6-type shots.**"
+ },
+ {
+  "uid": "C1.a|p0029|r0",
+  "critical_square": "b5",
+  "critical_move_san": "Bxb5",
+  "accept_squares": [
+   "b5"
+  ],
+  "accept_moves": [
+   "Bxb5",
+   "d7b5"
+  ],
+  "response": "Position after 1.e4?!-ish lines aside \u2014 let's just look at what's on the board (Ruy/Bb5 vs. c5-d5 setup, looks like a Sicilian-ish structure with ...c5/...d5 already played, and Bb5 pinning Nc6... wait, no knight on c6 \u2014 bishop's on d7).\n\nKey things to think about:\n\n1. **Your bishop on b5 is pinning/eyeing d7**, but Black just met it with ...Bd7, so the pin is gone. Consider whether Bxd7+ trades off Black's good bishop, or whether retreating keeps tension.\n\n2. **Central tension**: Black has c5+d5 pawns, you have c3+e3. This is a Slav/Semi-Slav-like structure. Decide if you want to challenge with d4 or let Black commit further.\n\n3. **Development**: Nb1 and c1-bishop are undeveloped. Prioritize getting them out (Nd2 or Nbd2, and Bc1 needs c3/d4 resolved first).\n\n4. **King safety**: You can castle immediately \u2014 consider doing so soon since center is fluid.\n\nMain question: **trade on d7 or retreat the bishop?**"
+ },
+ {
+  "uid": "C2.a|p0065|r0",
+  "critical_square": "b4",
+  "critical_move_san": "Qxb4+",
+  "accept_squares": [
+   "b4"
+  ],
+  "accept_moves": [
+   "Qxb4",
+   "Qxb4+",
+   "b5b4"
+  ],
+  "response": "Let me analyze the position.\n\nFEN: r1b1k1nr/pp1pb1Qp/n1p1p3/1q3p2/PP1PP3/4B3/2P2PPP/RN2K1NR w KQkq - 0 10\n\n**Mate in 1: Qxe7#**\n\nWhite's queen on g7 captures the bishop on e7 with check. The king on e8 has no escape:\n- Qxe7 delivers check from e7\n- King can't go to d8 (queen covers it)\n- King can't go to f8 (queen covers it)\n- The knight on g8 can't block or capture\n- No piece can capture the queen (it's defended by the bishop on e3, and nothing black can take it)\n\nThis is mate \u2014 **Qxe7#**, on the **e7** square.\n\nAdditionally, this move also wins material by capturing the hanging bishop on e7, but since it's checkmate, that's moot \u2014 the game ends immediately."
+ },
+ {
+  "uid": "C2.a|p0033|r1",
+  "critical_square": "a5",
+  "critical_move_san": "Nxa5",
+  "accept_squares": [
+   "a5"
+  ],
+  "accept_moves": [
+   "Nxa5",
+   "c4a5"
+  ],
+  "response": "Let me analyze the position.\n\nFEN: r1b1kb1r/1p3ppp/p7/q1p1n3/P1N1Pp1P/2P2P2/1P2B1P1/R2Q1RK1 b - - 3 15\n\n**Hanging pieces:** The white knight on c4 is attacked by the black queen on a5. It's not defended by anything (a2-pawn is gone, b2 pawn doesn't cover c4). So **Nc4 is hanging**.\n\n**Mate in 1?** Let's check black's forcing options. The knight on e5 and queen on a5 are black's active pieces. Looking for a check that's mate:\n\n- Qa5-e1+? Blocked/not reachable cleanly, and even if given, Rf1 or Qd1 can interpose/capture.\n- Ne5-d3? Not check.\n- Nf3+? Knight isn't there.\n\nNo, there's no mate in one available for black here \u2014 white's king has escape/blocking resources (Qd1, Rf1, Kg1 has luft via g2... actually g2 pawn blocks, but Nxf3+ type ideas don't exist since knight is on e5).\n\n**Answer:** No mate in 1. Just Nc4 hanging to Qa5."
+ },
+ {
+  "uid": "C1.b|p0001|r1",
+  "critical_square": "e6",
+  "critical_move_san": "Nxe6",
+  "accept_squares": [
+   "e6"
+  ],
+  "accept_moves": [
+   "Nxe6",
+   "d4e6"
+  ],
+  "response": "**Position read:** Material is roughly balanced but chaotic \u2014 you (Black) have a passed/promoting-threat pawn on c7 (White's, actually \u2014 wait, let me flag: pawn on c7 is White's, one step from queening!). That's the critical fact: White's c7 pawn is one move from promoting, and your king on f7 is exposed with White pieces (Nd4, Q, R, B) still active.\n\n**Immediate priority:** Stop c8 promotion. Check if Bxc7 or ...Bxc7 is available \u2014 your Bf8 or Bc8... actually your bishop on c8 already blocks/attacks c7 indirectly. Confirm ...Bxc7 is legal and safe.\n\n**Plan:**\n1. Deal with the c7 pawn first (capture or blockade) \u2014 this is non-negotiable.\n2. Your king safety is shaky; avoid opening more lines.\n3. Look for tactics with ...Qxe4 or ...g3 exploiting White's loose kingside pawns (g2, f2, h4) once c7 is neutralized.\n4. Coordinate rooks/bishops before pushing pawns further.\n\nSecure king and stop promotion before anything else."
+ },
+ {
+  "uid": "C1.a|p0062|r0",
+  "critical_square": "f2",
+  "critical_move_san": "Kxf2",
+  "accept_squares": [
+   "f2"
+  ],
+  "accept_moves": [
+   "Kxf2",
+   "e1f2"
+  ],
+  "response": "Let's look at what's happening: your knight on f2 is deep in enemy territory, forking your rook (h1) and queen (d1)? Wait \u2014 check: from f2 it attacks h1 and d1 both. That's a serious problem \u2014 you're about to lose material no matter what.\n\nKey questions to ask yourself:\n\n1. **Can I capture the knight?** King can take on f2 (Kxf2), which is forced/best \u2014 just accept losing castling rights and get the piece.\n2. **Why did this happen?** Look back \u2014 you likely left f2 undefended after opening moves (b3, c3, c5, e3) without developing pieces to cover key squares. Development lagged behind pawn moves.\n3. **Going forward:** After Kxf2, prioritize getting your king safe-ish, finish development (Nf3, Bd3/Be2, castle by hand if possible), and don't let piece activity outpace king safety again.\n\nLesson: pawn-grabbing/expansion moves are fine, but always check knight-fork squares (especially f2/f7) before moving on."
+ },
+ {
+  "uid": "C2.a|p0052|r0",
+  "critical_square": "c5",
+  "critical_move_san": "dxc5",
+  "accept_squares": [
+   "c5"
+  ],
+  "accept_moves": [
+   "d4c5",
+   "dxc5"
+  ],
+  "response": "Let me analyze this position.\n\nFEN: rnb1k2r/pp5p/2p1p1p1/2qp1p2/3P2n1/NPP1PN2/PQ3PPP/2KR1B1R w kq - 3 12\n\n**Hanging pieces:** Black's knight on g4 is undefended \u2014 White's Nf3 doesn't attack it, but nothing of White's currently hits g4 for free (need to check attackers: no White piece attacks g4). Actually checking more carefully: White's queen on b2 eyes the long diagonal but is blocked by pawns. Nothing is clearly hanging for either side right now.\n\n**Mate in 1?** No \u2014 Black's king on e8 has no immediate mate available in one move for White. There's no check available that also delivers checkmate given Black's escape squares/blockers (d7, f7 pieces could absorb checks, and king has flight squares).\n\n**Answer: No mate in 1, and nothing is hanging.**"
+ },
+ {
+  "uid": "C2.b|p0019|r0",
+  "critical_square": "e5",
+  "critical_move_san": "Bxe5",
+  "accept_squares": [
+   "e5"
+  ],
+  "accept_moves": [
+   "Bxe5",
+   "f4e5"
+  ],
+  "response": "Let me analyze the position.\n\n**FEN:** 4rk1r/Nbppb1pp/p4n2/p1n1q3/4PB2/6PP/1PP1QP1R/1R2K3 b - - 5 21\n\n**Pieces on board:**\n- White King: e1\n- White pieces: Na7, Bf4, Qe2, Rh2, Rb1, pawns b2,c2,e4,f2,g3,h3\n- Black King: g8\n- Black pieces: Bb7, Bc7... wait let me recheck: b7 is bishop, c7/d7/g7/h7 pawns, e5 queen, c5 knight, f6 knight, rooks e8/h8\n\n**Hanging piece:**\nWhite's Na7 is hanging \u2014 attacked by Bb7, undefended by any white piece. Black can play **Bxa7** winning the knight for free.\n\n**Forced mate in one?**\nNo mate in one exists. White king on e1 has no immediate mating threat available to Black in a single move; no black piece delivers checkmate this move.\n\n**Answer:** No mate in one. Hanging piece: **Na7** (capture with Bxa7)."
+ },
+ {
+  "uid": "C1.c|p0009|r1",
+  "critical_square": "h6",
+  "critical_move_san": "gxh6",
+  "accept_squares": [
+   "h6"
+  ],
+  "accept_moves": [
+   "g7h6",
+   "gxh6"
+  ],
+  "response": "The single biggest thing: **your queen on g2 is in serious danger of being trapped**, and White's king is oddly placed on e2 rather than castled.\n\nLook for:\n1. **Does g2 have an escape route?** Check squares like g4, h2, g6/g5, or a retreat down the g-file. If White can play Rg1 or Nf3 covers key squares, your queen could get shut in.\n2. **White's last move Nf3** attacks nothing directly yet, but it develops with tempo-potential ideas and eyes trapping your queen via Rag1 or similar.\n3. **Your development is way behind** \u2014 only your queen has ventured out. Before grabbing more material or pushing further, ask: can I safely extract the queen *and* develop (...Bd6, ...Ne7, ...O-O-O)?\n\nBottom line: **calculate queen-escape squares first** \u2014 a piece down is often fine, but a *trapped queen* is not."
+ },
+ {
+  "uid": "C1.b|p0007|r1",
+  "critical_square": "b3",
+  "critical_move_san": "axb3",
+  "accept_squares": [
+   "b3"
+  ],
+  "accept_moves": [
+   "a4b3",
+   "axb3"
+  ],
+  "response": "**Read:** You have a big lead in development and central space (pawns on d4/e4 vs. undeveloped black queenside). Black's queen on c8 and rook on a8 are passive, and the pawn grab on a4/b4 has weakened Black's queenside light squares \u2014 your Bb3 already eyes f7. Black hasn't castled yet, which is the key point.\n\n**Plan:**\n1. **Castle kingside now** (O-O) to get your king safe and rooks connected while Black is undeveloped.\n2. Look at **e5**, hitting the f6-knight and cramping Black further \u2014 if Nd5, consider Nxd5/cxd5 lines opening things up.\n3. Keep an eye on tactics against f7/e6 given your bishop pair pointing at the king.\n4. Meanwhile a4/b4 pawns are weak long-term \u2014 a later Qc2-e2 or Rd1 supports central breaks.\n\nPriority: **finish development, punish Black's lag, don't rush material grabs.**"
+ },
+ {
+  "uid": "C2.b|p0083|r2",
+  "critical_square": "h1",
+  "critical_move_san": "Qxh1+",
+  "accept_squares": [
+   "h1"
+  ],
+  "accept_moves": [
+   "Qxh1",
+   "Qxh1+",
+   "h2h1"
+  ],
+  "response": "Let me analyze the position.\n\n**FEN:** 2b2b1r/rp1Pk2p/5ppB/1B6/P1N5/8/P1P2PPq/2RQK2R w K - 0 21\n\n**Hanging pieces:**\n- Black's queen on h2 is undefended (attacked by nothing right now, but loose).\n- Black's rook on a7 is undefended.\n- Black's bishop on c8 is undefended, only guarded by the rook on h8... actually not guarded at all \u2014 hanging.\n- White's bishop on h6 is attacked by g6/f8-bishop connections \u2014 check: g7 pawn is gone, f8 bishop doesn't hit h6. Actually h6 bishop looks safe.\n\n**Mate in one:**\nYes \u2014 **Qd1-d4... ** no, check directly: **Rc1-e1** isn't mate. Try **d7-d8=Q#**? King on e7 \u2014 promoting d8=Q gives check from d8, king can go to... e7 has escape? Let's check **Bh6-g7#**? Not check.\n\nThe clean mate: **Nc4-d6#** \u2014 no line access issue.\n\nActual mate in one: **Qd1-d2? No.**\n\nThe move is **d8=Q#**."
+ },
+ {
+  "uid": "C2.c|p0084|r2",
+  "critical_square": "e2",
+  "critical_move_san": "Bxe2",
+  "accept_squares": [
+   "e2"
+  ],
+  "accept_moves": [
+   "Bxe2",
+   "g4e2"
+  ],
+  "response": "Bxe2\n\nThe bishop on g4 attacks the queen on e2, which is undefended \u2014 Black plays ...Bxe2 winning the queen."
+ },
+ {
+  "uid": "C1.a|p0082|r1",
+  "critical_square": "d8",
+  "critical_move_san": "Qxd8#",
+  "accept_squares": [
+   "d8"
+  ],
+  "accept_moves": [
+   "Qxd8",
+   "Qxd8#",
+   "d2d8"
+  ],
+  "response": "Let's break down the position:\n\n- White is up big material-wise potential \u2014 that pawn on f7 is one move from queening, and Black's king is stuck on f8 unable to castle.\n- Black just has a lot of loose/undeveloped pieces (knight on e7, bishop on a3 offside, queen still home).\n- Key candidate: **Qxa3** wins a piece outright, since Black's bishop on a3 is undefended and grabbing it doesn't lose any tempo \u2014 it's just free material.\n\nQuestions to ask yourself:\n1. Is anything hanging on my own side if I take on a3? (No \u2014 check for tactics first.)\n2. Does Black have any immediate threat I need to answer before cashing in? (Look at ...Nxf7 style ideas or checks.)\n3. After winning the piece, how do I keep exploiting the king stuck in the center/f8?\n\nThink material grab first, then convert with piece activity \u2014 Bc4/Qd2 are already well-placed for a quick attack afterward."
+ },
+ {
+  "uid": "C1.b|p0068|r0",
+  "critical_square": "b7",
+  "critical_move_san": "Nxb7+",
+  "accept_squares": [
+   "b7"
+  ],
+  "accept_moves": [
+   "Nxb7",
+   "Nxb7+",
+   "c5b7"
+  ],
+  "response": "White to move, and this is a mess \u2014 pieces hanging everywhere. Key point: your Bc1 is attacked by the f1 bishop, and Black has a knight fork threat on e4/f2 area to watch. But look closer: Nc5 attacks b7/e6/a6/d7 \u2014 specifically it hits your queen's counterpart on b7 and the knight on d7! Play **Nxb7+** winning the queen for a knight (check first since it forks king and queen via discovered/direct attack on d8... actually verify: Nc5 to b7 gives check to Kd8 while forking Qb7). That's the tactical shot to calculate first.\n\nPlan:\n1. Calculate Nxb7+ Kxb7 (or wherever) \u2014 are you up material?\n2. If not clean, prioritize king safety (your king's stuck on d1, no castling).\n3. Watch back-rank/discovered checks from your own pieces.\n4. Consolidate: connect rooks, activate Bc1 safely, target Black's weak king in center.\n\nConcrete calculation beats general plans here \u2014 this position is sharp and tactical, not positional."
+ },
+ {
+  "uid": "C2.c|p0031|r1",
+  "critical_square": "g7",
+  "critical_move_san": "Bxg7",
+  "accept_squares": [
+   "g7"
+  ],
+  "accept_moves": [
+   "Bxg7",
+   "d4g7"
+  ],
+  "response": "The critical point is **d4**: White's bishop on d4 is hanging (undefended), attacked by the knight on c6 and potentially other black pieces. Black can win material with **...Nxd4**, forking/attacking further (e.g., threatening the queen on c2 and infiltration)."
+ },
+ {
+  "uid": "C2.b|p0049|r1",
+  "critical_square": "h5",
+  "critical_move_san": "Qxh5",
+  "accept_squares": [
+   "h5"
+  ],
+  "accept_moves": [
+   "Qxh5",
+   "d1h5"
+  ],
+  "response": "Let me analyze the position.\n\n**FEN:** 1rb2rk1/1p3pp1/pqnpp3/2p3pn/P1P1P3/1P4P1/N2P1P1P/1RBQ1RKB w - - 0 15\n\n**Hanging pieces:** Black's knight on h5 is undefended and attacked by White's bishop on h1 (the h1-a8 diagonal is open: h1-g2 is blocked by pawn... wait, g2 pawn blocks it). Let me check the diagonal properly \u2014 h1 bishop is blocked by own g2 pawn, so it doesn't hit h5.\n\nChecking more carefully: nothing of White's currently attacks h5 or c6 directly given pawn blockages. No clear hanging piece for either side jumps out \u2014 material seems roughly balanced with pieces mutually defended.\n\n**Mate in one:** No forced mate in one exists here. Black's king on g8 has flight squares and no White piece delivers check with mate support in a single move.\n\n**Answer:** No hanging piece and no mate in one in this position."
+ },
+ {
+  "uid": "C1.a|p0089|r2",
+  "critical_square": "d3",
+  "critical_move_san": "Nd3#",
+  "accept_squares": [
+   "d3"
+  ],
+  "accept_moves": [
+   "Nd3",
+   "Nd3#",
+   "b4d3"
+  ],
+  "response": "Let's break down this position:\n\n**Material/structure:** Equal material, roughly symmetric pawn structures but you've committed to ...d6/...c6/...g6/...f6 \u2014 a bit passive, boxing in your own dark-square bishop.\n\n**Key questions to ask yourself:**\n- Your knight on b4 is offside \u2014 is it doing anything, or does it need a plan (a5-a4, or retreat to c6/a6)?\n- White's b2-bishop eyes the long diagonal toward g7 \u2014 your g6/f6 pawns block that for now, but watch if the center opens.\n- You haven't castled yet, and neither has White fully committed (king still on e1). Development speed matters.\n\n**Practical plan:** Get your kingside pieces out (Bg7 is natural, hitting c3-knight through the long diagonal indirectly and prepping O-O). Consider whether a4-a5 supports your b4-knight or if it's better repositioned.\n\nPrioritize: safety of king, activate bishops, don't let the b4-knight become a liability."
+ },
+ {
+  "uid": "C1.c|p0018|r0",
+  "critical_square": "f7",
+  "critical_move_san": "Bxf7+",
+  "accept_squares": [
+   "f7"
+  ],
+  "accept_moves": [
+   "Bxf7",
+   "Bxf7+",
+   "c4f7"
+  ],
+  "response": "White's already grabbed a nice setup: pawn on e4, bishop on c4 eyeing f7, knight developed to f3. Your last two moves (a6, h6) haven't contested the center at all, so the key thing to focus on now is **catching up in development and challenging the center** before White builds an even bigger advantage.\n\nAsk yourself: does White have any immediate threats against f7 or elsewhere? (Not yet, since castling is required first and Ng5 tricks aren't available.) That means you have a free tempo \u2014 use it wisely.\n\nPriorities in order:\n1. Get a central pawn in (d5 or e5) to fight for the center.\n2. Develop a minor piece toward the center, not the rim.\n3. Prepare castling soon.\n\nAvoid further \"small\" pawn moves like a6/h6 \u2014 they don't help you compete for the center and let White keep expanding for free."
+ },
+ {
+  "uid": "C2.a|p0084|r1",
+  "critical_square": "e2",
+  "critical_move_san": "Bxe2",
+  "accept_squares": [
+   "e2"
+  ],
+  "accept_moves": [
+   "Bxe2",
+   "g4e2"
+  ],
+  "response": "Let me analyze this position.\n\n**FEN:** r2qkr2/pBp1bpp1/3p1n2/6Np/P2pP1b1/8/1PP1QPP1/R1BN1RK1 b q - 2 15\n\nIt's **Black to move**.\n\n**Is anything hanging?**\nYes \u2014 the white bishop on **b7** is hanging (it just captured on b7, likely taking a pawn/piece, and is undefended). Black's queen on d8 or rook on a8 can take it: **Rxb7** or **Qxb7**.\n\n**Mate in 1?**\nCheck for Black mating White. White's king is on g1, somewhat exposed (f2, g2, pawns; Nd1, Rf1, Bc1 nearby). Look for Black bishop on g4 or knight on f6 delivering mate \u2014 nothing immediate lands as mate in one; White has escape squares/blockers (Rf1, Nd1, pawn g2/f2 shield).\n\n**Conclusion:** No mate in 1 for Black. The hanging piece is the bishop on **b7**."
+ },
+ {
+  "uid": "C2.c|p0018|r2",
+  "critical_square": "f7",
+  "critical_move_san": "Bxf7+",
+  "accept_squares": [
+   "f7"
+  ],
+  "accept_moves": [
+   "Bxf7",
+   "Bxf7+",
+   "c4f7"
+  ],
+  "response": "Bxf7+ \u2014 the bishop on c4 delivers check and forks the king (f7 is only defended by the king), winning material since after Kxf7 Black's king is exposed. But more precisely: the critical hanging point is **f7**, which is only guarded by the black king and is attacked by the bishop on c4.\n\nNo mate in one exists here \u2014 Black's last move (...a6/...h6) has left f7 weak, but the king can simply recapture, so it's a hanging pawn (attacked twice effectively via tactics) rather than forced mate.\n\n**Critical square: f7**"
+ },
+ {
+  "uid": "C1.c|p0083|r0",
+  "critical_square": "h1",
+  "critical_move_san": "Qxh1+",
+  "accept_squares": [
+   "h1"
+  ],
+  "accept_moves": [
+   "Qxh1",
+   "Qxh1+",
+   "h2h1"
+  ],
+  "response": "White to move \u2014 and the most important thing here is that **d7-pawn is one step from queening**, with a bishop on b5 backing it up and the rook already committed on a7. That's your trump card and the whole game hinges on exploiting it.\n\nAt the same time, don't get tunnel vision: Black just played ...Qh2, poking at g2/f2, so check that your king isn't walking into anything while you calculate.\n\nKey questions to ask yourself before moving:\n\n- Can I **promote the d-pawn immediately** or force it through with tactics (Rc1-c8 ideas, Bh6 already eyeing f8)?\n- Is Black's queen on h2 threatening anything concrete right now, or is it just a spectator?\n- Are Black's rook on a7 and bishop on c8 doing enough to stop d8=Q?\n\nLook for a forcing shot first \u2014 promotion threats trump slower plans."
+ },
+ {
+  "uid": "C1.c|p0017|r0",
+  "critical_square": "d4",
+  "critical_move_san": "Nxd4",
+  "accept_squares": [
+   "d4"
+  ],
+  "accept_moves": [
+   "Nxd4",
+   "f5d4"
+  ],
+  "response": "Let's look at the board:\n\nr4br1/1kpq4/p1pp2p1/5n1p/1PPB4/2N4P/P3QPP1/1R3KNR w - - 3 26\n\nThe key thing to notice: **your bishop on d4 and queen on e2 are aiming straight at the a7-g1 and e-file toward Black's king on b7**, but more urgently \u2014 Black's king is on b7, somewhat exposed, and you've got a big pawn majority on the queenside (b4/c4) plus open lines.\n\nBefore moving, ask yourself:\n\n1. **Can I open lines toward the black king?** With Bd4 eyeing long diagonals and king on b7, a timely c5 or b5 break could crack things open.\n2. **Is anything hanging?** Check if Nf5 or Qd7 create any tactics against your Qe2/Bd4.\n3. **Piece activity**: your Ng1/Rh1 are undeveloped/passive \u2014 factor that into any sacrifice or attack.\n\nMain priority: **look for a pawn break (b5 or c5) to expose the black king**, while confirming no tactic against your own pieces first."
+ },
+ {
+  "uid": "C2.c|p0081|r1",
+  "critical_square": "e5",
+  "critical_move_san": "dxe5",
+  "accept_squares": [
+   "e5"
+  ],
+  "accept_moves": [
+   "d4e5",
+   "dxe5"
+  ],
+  "response": "White's queen on d1 can play **Qxd5**, winning the black knight on d5 \u2014 it's undefended (the c6-pawn was already traded off, and nothing covers d5), so **d5** is the critical square."
+ },
+ {
+  "uid": "C2.a|p0046|r0",
+  "critical_square": "f3",
+  "critical_move_san": "exf3",
+  "accept_squares": [
+   "f3"
+  ],
+  "accept_moves": [
+   "e4f3",
+   "exf3"
+  ],
+  "response": "Let me analyze this position.\n\n**FEN breakdown:** White: Ra1, Nb1, Bc1, Qd1, Ke1, Bf1, Rh1, pawns a3,b2,c4,d2,e2,f2,g2,h2, Nf3. Black: Ra8, Nb8, Bc5, Qd8, Ke8, Ng8, Rh8, pawns a7,b7,c7,d7,f7,g7,h7, e4-pawn.\n\n**Hanging pieces:** Black's e4 pawn is attacked by Nf3 and undefended \u2014 it's hanging. Also Bc5 is not currently attacked by anything (b4 push isn't available since b2 pawn hasn't moved to enable it immediately, and no piece hits c5).\n\n**Mate in 1?** No. White has no immediate mating move \u2014 Black's king on e8 has escape/blocking resources, and no White piece delivers check with no response (e.g., Qd1 can't reach a mating square in one move; Nf3xe4 is just a capture, not check).\n\n**Answer:** No mate in 1. The **e4 pawn** is hanging (attacked by Nf3, undefended)."
+ },
+ {
+  "uid": "C1.a|p0014|r2",
+  "critical_square": "f3",
+  "critical_move_san": "Qxf3+",
+  "accept_squares": [
+   "f3"
+  ],
+  "accept_moves": [
+   "Qxf3",
+   "Qxf3+",
+   "c6f3"
+  ],
+  "response": "Let's break down the position first, since it looks sharp for Black.\n\n**Key observations:**\n- Your king on f1 is under real pressure \u2014 Black has pieces swarming (Ng4, Be5, Qc6) aimed at your kingside.\n- Your own king safety should be priority #1 right now, before counting material or grabbing pawns.\n- Look at Ng4 \u2014 it's attacking f2/h2 and eyeing e3. Can it be tolerated, or does it need addressing (h3, or trading it off)?\n- Check for tactics against you first: any Bxc3, Qxc3, or discovered ideas from Be5 hitting c3/b2? Also watch Nxf2 sacrifices ripping open your king.\n- Only after you've confirmed your king is safe should you think about your own play \u2014 your bishop pair (Bb3, Bc1) and rooks are undeveloped/passive, so activating the Ra1/Rh1 matters too.\n\n**Ask yourself:** \"What's Black's biggest threat right now, and can I stop it in one move while also improving my position?\""
+ },
+ {
+  "uid": "C1.a|p0081|r0",
+  "critical_square": "e5",
+  "critical_move_san": "dxe5",
+  "accept_squares": [
+   "e5"
+  ],
+  "accept_moves": [
+   "d4e5",
+   "dxe5"
+  ],
+  "response": "White to move. Key features: material is roughly even but White has development problems (Ra1, Nb-somewhere, King still on e1) while Black's queen on e5 is very active, eyeing e3-square and pressure down the e-file, and Black's f4 pawn is a thorn wedged into White's kingside.\n\nThink about:\n\n1. **King safety** \u2013 White hasn't castled, and with an open-ish center this is risky. Consider getting the king safe or at least keeping lines closed.\n2. **The f4 pawn** \u2013 it cramps you and could support ...Bh6 or ...g5-g4 ideas later. Can you challenge it with gxf4 or Nf3 hitting the queen?\n3. **Piece activity** \u2013 Nb-development and Bc1 are undeveloped. A move like Nf3 hits the queen, gains time, and develops simultaneously.\n4. **Queen on e5** \u2013 it's exposed; look for tempo-gaining moves against it before dealing with other issues.\n\nPrioritize: hit the queen, develop, then castle."
+ },
+ {
+  "uid": "C2.b|p0089|r1",
+  "critical_square": "d3",
+  "critical_move_san": "Nd3#",
+  "accept_squares": [
+   "d3"
+  ],
+  "accept_moves": [
+   "Nd3",
+   "Nd3#",
+   "b4d3"
+  ],
+  "response": "Let me analyze this position (Black to move).\n\n**Pieces on the board:**\n- White: Kg1... wait, Ke1, Qd1, Rc1, Bb2, Bf1, Nc3, Ne2, pawns a2,c4,d2,e4,f2,g2,h2\n- Black: Ke8, Qd8, Rh8, Bc8, Bf8, Nb4, pawns a7,c6,d6,f6,g6,h7... plus a8 rook missing? Let me recount from FEN: r1bqkbnr \u2014 Ra8, Bc8, Qd8, Ke8, Bf8, Nh6... actually knight is on g6/f6 rank: r1bqkbnr/pp2p2p/2pp1pp1/8/1nP1P3/2N5/PB1PNPPP/2RQKB1R\n\nRank8: r1bqkbnr = Ra8,Bc8,Qd8,Ke8,Bf8,Ng8,Rh8 (b4 knight is separate, second knight developed to b4)\n\n**Hanging pieces:** The Black knight on b4 is attacked by nothing currently (Bb2 aims at g7, not b4). Nothing is hanging outright.\n\n**Forced mate in one?** No \u2014 White's king is on e1, not exposed; no mating pattern available in one move for Black.\n\nNo mate in one exists."
+ },
+ {
+  "uid": "C2.b|p0084|r1",
+  "critical_square": "e2",
+  "critical_move_san": "Bxe2",
+  "accept_squares": [
+   "e2"
+  ],
+  "accept_moves": [
+   "Bxe2",
+   "g4e2"
+  ],
+  "response": "Let me analyze this position.\n\n**FEN:** r2qkr2/pBp1bpp1/3p1n2/6Np/P2pP1b1/8/1PP1QPP1/R1BN1RK1 b q - 2 15\n\nBlack to move.\n\n**Hanging pieces:**\n- White bishop on b7 is attacked by the rook on a8 and defended by nothing \u2014 it's hanging.\n- White knight on g5 is attacked by the bishop on e7 and defended by the queen on e2 \u2014 not free.\n\n**Mate in one?**\nCheck for Black mating moves:\n- Qd7-related ideas don't give immediate mate.\n- ...Bxe2 wins the queen but isn't mate.\n- No black piece delivers a checkmate in one move \u2014 White king on g1 has escape/blocking resources (f1 rook, pawns on f2/g2), and no black piece currently has a mating check available.\n\n**Answer:**\n- Hanging piece: **White bishop on b7** (attacked by Ra8, undefended).\n- No forced mate in one for Black."
+ },
+ {
+  "uid": "C1.c|p0031|r2",
+  "critical_square": "g7",
+  "critical_move_san": "Bxg7",
+  "accept_squares": [
+   "g7"
+  ],
+  "accept_moves": [
+   "Bxg7",
+   "d4g7"
+  ],
+  "response": "The biggest thing to notice right now: **your queenside pawns are overextended and your king is stuck in the center**, while White's king, though also uncastled, has easy access to safety and active piece play (Bd4 is a monster on the long diagonal, Ne2/Nd2 are ready to jump into c4/d4/f4).\n\nConcretely, check:\n\n1. **Is c5 hanging or advancing with tempo?** That pawn is deep in your territory \u2014 can you win it, or does it cramp you?\n2. **Your king safety** \u2014 neither side has castled kingside here, but White can tuck the king away faster (Kc1-b1 ideas) while yours is still in the center. Don't delay development/safety further.\n3. **The b4/c4 pawn chain** \u2014 is it solid or a long-term weakness that White's knights can attack?\n\nPriority: find a move that improves king safety or challenges Bd4, rather than just grabbing material."
+ },
+ {
+  "uid": "C1.b|p0064|r2",
+  "critical_square": "h8",
+  "critical_move_san": "Qxh8#",
+  "accept_squares": [
+   "h8"
+  ],
+  "accept_moves": [
+   "Qxh8",
+   "Qxh8#",
+   "g7h8"
+  ],
+  "response": "Let me break down this position.\n\n**Material/threats:** You're White, and you're up significant material \u2014 Black's knights on c3 and c6 are awkward, and critically, your queen on g7 is deep in Black's camp, eyeing the h8-rook and having just grabbed material. Black's king is still on e8 (hasn't castled), and the rook on h8 is attacked by your queen.\n\n**Immediate tactic:** Qxh8+ wins the exchange outright \u2014 check first (Qxh8+), and Black can't recapture favorably. That looks like the concrete move to calculate first.\n\n**Plan:**\n1. Calculate Qxh8+ Bxh8 (forced-ish) lines \u2014 you win rook for queen? No \u2014 check material: you'd trade Q for R, so verify it's actually favorable or if there's something better keeping the queen active.\n2. If Qxh8 isn't clean, prioritize evacuating the queen safely while keeping the extra material.\n3. Develop Nb1 and Bc1, castle-by-hand with Kd2/Rf1 if needed since Black's king is still central \u2014 open the position while he's uncastled."
+ },
+ {
+  "uid": "C2.b|p0017|r0",
+  "critical_square": "d4",
+  "critical_move_san": "Nxd4",
+  "accept_squares": [
+   "d4"
+  ],
+  "accept_moves": [
+   "Nxd4",
+   "f5d4"
+  ],
+  "response": "Let me analyze the position.\n\n**FEN:** r4br1/1kpq4/p1pp2p1/5n1p/1PPB4/2N4P/P3QPP1/1R3KNR w - - 3 26\n\n**Hanging pieces:** Black's knight on f5 is not currently attacked by anything. Checking White's pieces: nothing attacks f5, h5, or other black pieces directly right now. Nothing is hanging for either side that I can find on first pass.\n\n**Mate in one?** Looking for a check that's also mate:\n- Qe2-e4? No check.\n- Bd4xa7? Not check.\n- Nc3-d5? Not check, and blocked by pawn c6.\n- Rb1xb7+? Kxb7, not mate.\n\nI don't see a forced mate in one for White in this position. The black king on b7 has escape squares (a8, b8, c8 area covered by rook, but Kb7 could go to a6, a8) and no single move delivers unstoppable check-mate.\n\n**Conclusion:** No piece is hanging, and there is no mate in one available."
+ },
+ {
+  "uid": "C2.a|p0016|r1",
+  "critical_square": "h8",
+  "critical_move_san": "Bxh8",
+  "accept_squares": [
+   "h8"
+  ],
+  "accept_moves": [
+   "Bxh8",
+   "d4h8"
+  ],
+  "response": "Let me check the position (Black to move).\n\n**Hanging pieces:** White's bishop on d4 is attacked by the knight on f5? No \u2014 let's check: Nf5 attacks d4, e3, g3, h4, h6, d6, e7, g7. Yes, Nf5 attacks Bd4. The bishop is defended by nothing on d4 currently (Ne2/queen don't cover it), so **Bd4 is hanging** to ...Nxd4.\n\n**Mate in 1?** Black's pieces: Rh8, Bf8, Qd7, Kb7, Nf5, Rb8... Looking for a mating shot on White's king at f1, shielded by g2, f2, Rb1, Rh1. No immediate mating square is available in one move \u2014 no piece currently delivers checkmate.\n\n**Answer:** No mate in 1. The bishop on **d4** is hanging (attacked by Nf5, undefended)."
+ },
+ {
+  "uid": "C1.c|p0054|r2",
+  "critical_square": "d2",
+  "critical_move_san": "exd2+",
+  "accept_squares": [
+   "d2"
+  ],
+  "accept_moves": [
+   "e3d2",
+   "exd2",
+   "exd2+"
+  ],
+  "response": "Look at the tension around Bxg7 and e3.\n\n**The key tactic right now:** your bishop on f6 hangs \u2014 wait, no, it's *your* move and Bxg6 or Bxg7 ideas exist, but more urgently check what Black just did: the pawn on e3 is a thorn forking nothing yet, but it's attacking your f2 pawn and could be a real annoyance if left alone.\n\nThe critical thing to calculate: **can you win material with Bxg7?** Your bishop on f6 attacks g7; if Bxg7, Bxg7 (or Rg8), you've traded off Black's dark-squared bishop and opened lines toward the black king, which is still stuck in the center-ish (uncastled, e-file semi-open after ...exf2+ ideas).\n\nAlso don't ignore **fxe3** \u2014 recapturing the pawn on e3 simplifies and removes Black's most advanced piece.\n\nSo: prioritize resolving the g7/e3 tension before anything else \u2014 calculate forcing lines first."
+ },
+ {
+  "uid": "C1.c|p0028|r0",
+  "critical_square": "a4",
+  "critical_move_san": "Bxa4",
+  "accept_squares": [
+   "a4"
+  ],
+  "accept_moves": [
+   "Bxa4",
+   "b5a4"
+  ],
+  "response": "Let's look at what's actually loaded in this position: your **Nc6 and Bb5 are both hanging or awkward** relative to White's Qa4, which pins/attacks along the a4-e8 diagonal-ish lines and eyes both pieces indirectly. Concretely \u2014 Qa4 attacks Nc6 (pinned-ish against... actually check: is anything pinned to your king on e8? No, king's on e8 but not on the a4-e8 diagonal). More urgent: **your Ne4 is loose**, undefended by anything except possibly tricks, and White's Nf3/pieces could look to challenge it.\n\nThe single most important thing: **check every piece that's currently undefended or attacked** \u2014 Nc6, Bb5, Ne4 \u2014 and figure out if White has a shot like Bxe4 or Qxb5-type tactics right now before you commit to a move. Don't move a pawn or make a quiet developing move until you've verified no piece is en prise."
+ },
+ {
+  "uid": "C2.a|p0060|r1",
+  "critical_square": "e4",
+  "critical_move_san": "dxe4",
+  "accept_squares": [
+   "e4"
+  ],
+  "accept_moves": [
+   "d5e4",
+   "dxe4"
+  ],
+  "response": "Let me analyze this position.\n\n**FEN:** r1bqkbr1/ppp2p1p/P5pn/3pp3/1nP1P3/NQ6/1P1P1PPP/R1B1KBNR w KQq - 2 8\n\n**Hanging pieces:**\n- Black's knight on b4 is attacked by the queen on b3, and only defended by... nothing (a7 pawn doesn't defend b4). So Nb4 is hanging.\n- White's pawn on a6 is attacked by b7 pawn.\n- White's queen on b3 is attacked by the knight on b4 itself (Nb4 attacks b3... wait, actually b4 knight doesn't attack b3, knights don't attack adjacent squares).\n\n**Mate in 1?**\nCheck Qxb4: Queen takes knight on b4 \u2014 does this give check or mate? No, king is on e8, not in line.\n\nCheck Qb3-b7? No, blocked/not check.\n\nThere is **no mate in 1** here. The only hanging piece is the **knight on b4**, capturable by **Qxb4**."
+ },
+ {
+  "uid": "C2.b|p0012|r1",
+  "critical_square": "d3",
+  "critical_move_san": "cxd3",
+  "accept_squares": [
+   "d3"
+  ],
+  "accept_moves": [
+   "c2d3",
+   "cxd3"
+  ],
+  "response": "Let me analyze the position.\n\n**FEN:** 2rkb3/2p1np2/p6p/4p3/P5p1/1B1rN3/RPPB1PPP/3K3R b - - 1 32\n\nBlack to move.\n\n**Hanging pieces:**\n- White's Ne3 is attacked by the rook on d3, and Ne3 has no defender \u2014 it's hanging.\n- White's Bb3 is defended by a2-pawn... actually there's no a2 pawn (it's on a4), so Bb3 is only defended by... nothing else nearby. Let's check: Bb3 is attacked by nothing currently.\n- Black's Rd3 attacks Ne3 (undefended) \u2014 that's the key hanging piece.\n\n**Mate in one?**\nCheck if Black has a mating move. White king is on d1, boxed in by pawns b2/c2 and pieces around. Black's Rd3 already gives check along the d-file... wait, d1-d3 is blocked by nothing \u2014 actually **Rd3 is already checking the king on d1** in this position (rook and king share the d-file with Bd2 blocking at d2!). The bishop on d2 blocks the check.\n\n**No immediate mate in one** \u2014 but **Ne3 is hanging**, capturable by **Rxe3** or **Rd3xe3... wait Rd3 is on d-file. Nxe3 isn't possible for black.\n\n**Square: e3** (the hanging knight)."
+ },
+ {
+  "uid": "C1.b|p0057|r2",
+  "critical_square": "d3",
+  "critical_move_san": "cxd3",
+  "accept_squares": [
+   "d3"
+  ],
+  "accept_moves": [
+   "c4d3",
+   "cxd3"
+  ],
+  "response": "**Read:** Black's queen on a4 and pawn grab on b5/c4 look aggressive but are actually overextended \u2014 Black's king is still in the center, undeveloped (Rh8, Bg7 both passive), and queenside pawns are loose. You have a big lead in development and safer king.\n\n**Plan:**\n1. **Kick the queen** with Nc3 isn't available (knight's on e2), so consider **Bxb5!** \u2014 axb5 Qxb5 wins a pawn back with initiative, or if queen moves you're just up material/tempo.\n2. Alternatively, play **c3** to solidify and prep Nc2-e3/d4 ideas, keeping c4/b5 weak long-term.\n3. Look at **Nxc4!?** tactically \u2014 dxc4 Bxb5, hitting the loose queenside and opening lines toward Black's king.\n4. Prioritize **fast development and central control** (e4-e5 break or Rc1) before Black castles/consolidates.\n\nOverall: press the queenside weaknesses and Black's uncastled king \u2014 don't let Black stabilize."
+ },
+ {
+  "uid": "C1.a|p0051|r2",
+  "critical_square": "b4",
+  "critical_move_san": "Bxb4",
+  "accept_squares": [
+   "b4"
+  ],
+  "accept_moves": [
+   "Bxb4",
+   "d2b4"
+  ],
+  "response": "Let's break down the position: White has just developed the knight to a4 and bishop to d2, dealing with your bishop check on b4. Key features:\n\n- **Material**: You're up a pawn (the d4 pawn).\n- **Your bishop on b4** is attacked by the bishop on d2 \u2014 you need to decide: trade, retreat, or reinforce.\n- **White's Na4** is offside, eyeing nothing useful right now \u2014 a sign White is slightly uncoordinated.\n- **Your extra d4 pawn** is passed and cramping, but undefended long-term unless supported.\n\nThink about:\n1. **Resolve the bishop tension** \u2014 trading on d2 simplifies and keeps your extra pawn safely; retreating (Be7 or Bc5) keeps pieces on but risks tempo loss.\n2. **Development** \u2014 Ngf6, Be7-type setups get you castled fast.\n3. **Consolidate the d4 pawn** \u2014 c5 or Ne7-type plans support it without overextending.\n\nPrioritize king safety and finishing development while banking the extra pawn."
+ },
+ {
+  "uid": "C2.b|p0089|r0",
+  "critical_square": "d3",
+  "critical_move_san": "Nd3#",
+  "accept_squares": [
+   "d3"
+  ],
+  "accept_moves": [
+   "Nd3",
+   "Nd3#",
+   "b4d3"
+  ],
+  "response": "Let me analyze this position (Black to move).\n\n**FEN:** r1bqkbnr/pp2p2p/2pp1pp1/8/1nP1P3/2N5/PB1PNPPP/2RQKB1R b Kkq - 1 7\n\n**Hanging pieces:**\n- Black's knight on b4 is attacked by the bishop on b2 (diagonal b2-b4 is clear... wait, actually b2 attacks a3-c1 diagonal, not b4 directly \u2014 let me check: bishop on b2 sits on the a1-h8 diagonal, so it attacks c3, d4, etc., not b4). Checking again: nothing currently attacks Nb4 directly.\n- White's e4 pawn is only defended by... nothing extra, but not attacked.\n- No pieces appear to be hanging for either side right now.\n\n**Forced mate in one?**\nNo \u2014 the White king is on e1, reasonably safe with pieces around it (Rc1, Qd1, Bf1, Ne2). Black has no immediate mating resource; it's too early and White's king isn't exposed enough.\n\n**Answer:** No hanging piece, no mate in one available here."
+ },
+ {
+  "uid": "C2.a|p0059|r0",
+  "critical_square": "h6",
+  "critical_move_san": "gxh6",
+  "accept_squares": [
+   "h6"
+  ],
+  "accept_moves": [
+   "g7h6",
+   "gxh6"
+  ],
+  "response": "**Position analysis:**\n\nBlack's bishop on h6... wait, let me check: White's bishop is on h6 (just played Bxh6, capturing a piece? No \u2014 pawn on g7 is gone, so Bxh6 captured a knight that had gone to h6, or g7 pawn).\n\nActually checking material: Black pawns present are a7,c7,e7,f7,g7... no g7 pawn shown \u2014 g7 is empty, h7 pawn present. So White's bishop captured on h6, likely taking a knight (Nf6-h6 was odd) \u2014 more simply, it captured the g7 pawn's escort or just landed there after Black moved g6 and ...Bh6xg7 isn't it. Regardless, currently:\n\n**Hanging piece:** White's bishop on h6 is hanging \u2014 Black can capture it with the g7 pawn... but g7 pawn is gone. It can be taken by nothing immediately, so it's **not hanging**.\n\n**Mate in 1:** No mate in 1 is available for White here \u2014 Black king still has escape squares and no check is possible immediately.\n\n**Answer: No mate in 1 exists in this position, and no piece is currently hanging for White to exploit immediately.**"
+ },
+ {
+  "uid": "C1.b|p0028|r1",
+  "critical_square": "a4",
+  "critical_move_san": "Bxa4",
+  "accept_squares": [
+   "a4"
+  ],
+  "accept_moves": [
+   "Bxa4",
+   "b5a4"
+  ],
+  "response": "**Position read:** You're down structurally \u2014 White's queenside pawns (b4/c5/c3) are advanced but your knight on c6 and bishop on b5 are eyeing weaknesses. Your king is still on e8/wants to castle but c8/e8 access is awkward with the queen on b8. White's king is uncastled too, sitting on e1, which is a real target.\n\n**Key tactical point:** Your knight on e4 is strong, hitting c3 and f2. Watch out for Nxe4 tricks, but also consider **Nxc3!?** ideas or piling up on c3/e3.\n\n**Plan:**\n1. Get castled quickly (O-O) to tuck your king away \u2014 White's king safety is worse long-term.\n2. Keep pressure on c3 (knight e4, bishop b5) \u2014 that pawn is a real target.\n3. Watch c5-c6 breaks by White; be ready to meet with ...b6 or ...d4 counterstrikes.\n4. Consider ...Qb7 or ...Rb8 doubling pressure on b4/queenside.\n\nPrioritize king safety first, then squeeze c3/b4."
+ },
+ {
+  "uid": "C1.c|p0048|r2",
+  "critical_square": "a5",
+  "critical_move_san": "bxa5",
+  "accept_squares": [
+   "a5"
+  ],
+  "accept_moves": [
+   "b4a5",
+   "bxa5"
+  ],
+  "response": "The most important thing right now: **c4-pressure on your queen and the b4-b5 lever**.\n\nYou've just played ...a5 hitting b4, but White can meet it with c4-c5 or push b5, opening lines while your king is still on e8. Key questions to ask yourself before moving:\n\n1. **Is my queen on a5 actually safe/useful**, or is it exposed to tempo-gaining moves like Bd2 or a3?\n2. **What happens after b5** \u2014 does it crack open the queenside where my king might castle?\n3. **Development**: I still have Bg7, Bd7 undeveloped-ish and haven't castled \u2014 castling kingside soon should be a priority so my king isn't stuck in the center if things open up.\n\nBottom line: don't grab material or push pawns further without checking whether White's queenside pawn storm (b5/c5) creates real threats against my king first."
+ },
+ {
+  "uid": "C2.b|p0031|r0",
+  "critical_square": "g7",
+  "critical_move_san": "Bxg7",
+  "accept_squares": [
+   "g7"
+  ],
+  "accept_moves": [
+   "Bxg7",
+   "d4g7"
+  ],
+  "response": "Let me analyze the position.\n\n**FEN:** r1b1k2r/3q1pbp/p1n3p1/2P2p2/1ppB4/2P4P/PPQNNPP1/R2K3R b kq - 1 15\n\nBlack to move.\n\n**Hanging pieces:** White's bishop on d4 is attacked by the knight on c6 \u2014 but wait, check defenders: the bishop on d4 is defended by the queen on c2 and knight on d2. Black's own pawns on b4/c4 are pushed but not immediately hanging anything critical. Looking more carefully, White's pawn on c5 is undefended and attacked by... nothing directly right now. Actually **no piece is clearly hanging for free** \u2014 d4 bishop is adequately defended.\n\n**Forced mate in one:** No. White's king on d1 has escape/block options (c1, e1 available, pieces can interpose), and no single Black move delivers unstoppable check-mate here.\n\n**Answer: No hanging piece, no mate in one.**"
+ },
+ {
+  "uid": "C2.c|p0051|r2",
+  "critical_square": "b4",
+  "critical_move_san": "Bxb4",
+  "accept_squares": [
+   "b4"
+  ],
+  "accept_moves": [
+   "Bxb4",
+   "d2b4"
+  ],
+  "response": "The critical point is the bishop on **b4** \u2014 it's hanging.\n\nWhite's last move (Na4) attacked it, and Black's bishop on b4 currently has no defender. If Black doesn't address it (e.g., with ...Qa5+, ...a5, or retreating), White plays **Nxb4**, winning a piece for free."
+ },
+ {
+  "uid": "C1.c|p0064|r0",
+  "critical_square": "h8",
+  "critical_move_san": "Qxh8#",
+  "accept_squares": [
+   "h8"
+  ],
+  "accept_moves": [
+   "Qxh8",
+   "Qxh8#",
+   "g7h8"
+  ],
+  "response": "Look at this position with fresh eyes first: your queen on g7 is deep in enemy territory, but black just left something hanging. Check for the tactic before anything else \u2014 count attackers and defenders on b6, c3, and the rook on a7.\n\nSpecifically: is your queen currently attacking anything undefended, and can black's next move trap or win material back against you? Also notice black's king is still on e8/c8 area with pieces undeveloped \u2014 that's often a sign a forcing continuation (check, capture, or threat) is available right now rather than a quiet developing move.\n\nBefore choosing a move, ask: \"What did my opponent's last move allow, and what does my queen threaten right now?\" That's the key question \u2014 don't get seduced by development moves like Nc1-d... if there's a concrete shot on the board."
+ },
+ {
+  "uid": "C1.b|p0071|r0",
+  "critical_square": "a3",
+  "critical_move_san": "bxa3",
+  "accept_squares": [
+   "a3"
+  ],
+  "accept_moves": [
+   "b2a3",
+   "bxa3"
+  ],
+  "response": "**Position read:** You're Black, up a pawn structurally (extra d4 pawn), but your queen on a3 is offside and White has decent development (Bg2, Nh3, castled rights) plus lead in piece activity. Your king is still uncastled, which is the main concern. White's a2/b2 pawns are loose, and d4 is a thorn but could become weak if undefended long-term.\n\n**Plan:**\n1. **Prioritize king safety** \u2014 get castled (...Bd7/...Be7 then O-O-O or O-O) before opening lines.\n2. **Support d4** \u2014 it's your key asset; consider ...c5 to keep it protected, or ...Nc7-e6 rerouting.\n3. **Watch your queen** \u2014 Qa3 could get trapped or tempo'd (b4/Bc1-related tricks); have a retreat square in mind.\n4. **Target queenside pawns** \u2014 a2/b2 are weak long-term if you can keep pieces on.\n\nDon't get greedy \u2014 consolidate first, convert the extra pawn later."
+ }
+]

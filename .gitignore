@@ -1,13 +1,7 @@
 .venv/
 __pycache__/
 *.pyc
+.DS_Store
 
-# LaTeX build artefacts
-paper/*.aux
-paper/*.bbl
-paper/*.blg
-paper/*.fdb_latexmk
-paper/*.fls
-paper/*.out
-paper/*.log
-paper/*.synctex.gz
+# Run progress logs. Every field they carry is already in data/*.jsonl.
+*.log

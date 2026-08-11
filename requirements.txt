@@ -1,0 +1,14 @@
+# Pinned to the versions the reported run was executed and analysed under.
+# Python 3.14.
+
+numpy==2.5.1
+scipy==1.18.0
+chess==1.11.2
+
+# Only needed to re-run the model calls (run_gate.py, run_pilot.py). The analysis
+# scripts read data/*.jsonl and do not import it.
+claude-agent-sdk==0.2.129
+
+# Position generation shells out to Stockfish. The reported set was labelled with
+# Stockfish 18 at depth 18; both are recorded per position in data/*_positions.jsonl.
+#   brew install stockfish

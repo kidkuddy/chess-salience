@@ -1,0 +1,136 @@
+{
+  "warning": "EXPLORATORY. Not pre-registered in PREREGISTRATION.md. Hypothesis formed on pilot data 2026-08-09; tested here on fresh positions.",
+  "n_positions_paired": 90,
+  "band_counts": {
+    "minor": 30,
+    "major": 30,
+    "decisive": 30
+  },
+  "by_band": {
+    "minor": {
+      "n_positions": 30,
+      "p_c1": 0.7814814814814817,
+      "p_c1_ci95": [
+        0.6925925925925928,
+        0.8629629629629629
+      ],
+      "p_c2": 0.7777777777777778,
+      "p_c2_ci95": [
+        0.6629629629629629,
+        0.8777777777777779
+      ],
+      "rd": -0.003703703703703709,
+      "rd_ci95": [
+        -0.08888888888888888,
+        0.07407407407407404
+      ]
+    },
+    "major": {
+      "n_positions": 30,
+      "p_c1": 0.8592592592592593,
+      "p_c1_ci95": [
+        0.774074074074074,
+        0.9296296296296297
+      ],
+      "p_c2": 0.8703703703703705,
+      "p_c2_ci95": [
+        0.8000000000000002,
+        0.9296296296296297
+      ],
+      "rd": 0.011111111111111117,
+      "rd_ci95": [
+        -0.055555555555555546,
+        0.0740740740740741
+      ]
+    },
+    "decisive": {
+      "n_positions": 30,
+      "p_c1": 0.8000000000000002,
+      "p_c1_ci95": [
+        0.7222222222222222,
+        0.874074074074074
+      ],
+      "p_c2": 0.8518518518518517,
+      "p_c2_ci95": [
+        0.762962962962963,
+        0.9296296296296297
+      ],
+      "rd": 0.051851851851851836,
+      "rd_ci95": [
+        -0.018518518518518528,
+        0.1259259259259259
+      ]
+    }
+  },
+  "interaction": {
+    "contrast": "RD_decisive - RD_minor",
+    "point": 0.055555555555555546,
+    "ci95": [
+      -0.05185185185185183,
+      0.16666666666666666
+    ],
+    "excludes_zero": false
+  },
+  "interaction_wald_crosscheck": {
+    "available": true,
+    "terms": [
+      "C(condition)[T.C2]:band[T.major]",
+      "C(condition)[T.C2]:band[T.decisive]"
+    ],
+    "statistic": 1.123785355451969,
+    "p_value": 0.5701289716324558,
+    "coefficients": {
+      "C(condition)[T.C2]:band[T.major]": 0.11664396178034864,
+      "C(condition)[T.C2]:band[T.decisive]": 0.3844632147648189
+    },
+    "separation_detected": false,
+    "separated_cells": [],
+    "caveat": null
+  },
+  "decisive_motif_matched": {
+    "n_positions": 23,
+    "n_excluded_mate_in_1": 7,
+    "p_c1": 0.8454106280193238,
+    "p_c2": 0.898550724637681,
+    "rd": 0.053140096618357495,
+    "rd_ci95": [
+      -0.01932367149758454,
+      0.12560386473429955
+    ],
+    "rd_ci_excludes_zero": false,
+    "interaction_vs_minor": {
+      "point": 0.056843800322061204,
+      "ci95": [
+        -0.04847020933977453,
+        0.16796296296296287
+      ],
+      "excludes_zero": false
+    }
+  },
+  "c1_flatness": {
+    "slope": 0.009259259259259276,
+    "ci95": [
+      -0.05,
+      0.06851851851851835
+    ],
+    "n_bands": 3
+  },
+  "c2_sensitivity": {
+    "slope": 0.037037037037037056,
+    "ci95": [
+      -0.0314814814814814,
+      0.10555555555555539
+    ],
+    "n_bands": 3
+  },
+  "support": {
+    "checks": {
+      "interaction_ci_excludes_zero": false,
+      "band_rds_ordered_minor_lt_major_lt_decisive": true,
+      "decisive_rd_ci_excludes_zero": false,
+      "c1_slope_ci_contains_zero_and_c2_slope_positive": false
+    },
+    "all_four_met": false,
+    "verdict": "NOT SUPPORTED"
+  }
+}
