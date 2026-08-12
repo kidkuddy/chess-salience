@@ -4,7 +4,20 @@ Where this study stands after six external reviews, what is decided, and what ha
 next in what order. Written 2026-08-11. Update the status column as things land; the
 reasoning underneath is meant to survive being read cold in a month.
 
-## The one-paragraph state of play
+## Result — 2026-08-12
+
+The retrofit ran: 1,944 extractions, zero errors, all validity checks passed, **branch 3**.
+`detected_self` gives C1 0.542, C2 0.536, **RD −0.006**, 95% CI [−0.069, +0.058] — inside
+the ±0.10 margin. **The equivalence conclusion survives a metric that excludes board
+transcription**, which the current draft cannot claim.
+
+The regex probe that motivated this work was wrong (it predicted +0.222; its specificity
+against the self-report is 0.633 and it over-fires on C2's tactical register). `hit_square`
+is confirmed over-inclusive — specificity 0.382, kappa 0.398 — but its error is roughly
+symmetric across arms, which is why the original conclusion held. Full write-up in the
+canvas "Retrofit result". Paragraph below is superseded and kept for the record.
+
+## The one-paragraph state of play (superseded — see Result above)
 
 The experiment is sound and every number in `RESULTS.md` reproduces from `data/`. The
 problem is upstream of the writing: the primary metric, `hit_square`, counts the critical
@@ -22,9 +35,9 @@ currently rests on the most permissive reading.** Everything below is ordered by
 | 1 | artifact repository, public-ready | done | — | 8 |
 | 2 | `LABELLING.md` protocol + harness | done, unrun | 15–60 min human | 3 |
 | 3 | `RETROFIT-PREREG.md` + frozen scripts | **done, unrun** | — | 4 |
-| 4 | **run the extraction retrofit** | **running** | ~$11, ~15 min | 5, 6, 7 |
-| 5 | rewrite the paper around the result | blocked on 4 | — | 8 |
-| 6 | v2 run: models, arms, positions | blocked on 4 | ~$190, 3.3 h in chunks | 7 |
+| 4 | run the extraction retrofit | **done — branch 3** | $11.15 actual | — |
+| 5 | **rewrite the paper (5b)** | **next** | — | 8 |
+| 6 | v2 run: models, arms, positions | unblocked | ~$190, 3.3 h in chunks | 7 |
 | 7 | second paper or extended version | blocked on 5, 6 | — | — |
 | 8 | submit | blocked on 5 | — | — |
 
