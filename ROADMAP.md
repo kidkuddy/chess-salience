@@ -87,6 +87,26 @@ should stop treating string-match detection as neutral.
 In all three the current `RESULTS.md` wording has to change, because it is already known
 to be metric-dependent.
 
+
+## Running things without losing them
+
+Two sessions died mid-run during the v1 retrofit. The runs were never the problem — both
+resumed with zero duplicate or corrupt records — but a background job started from a Claude
+Code session dies when that session is recycled. Detach it:
+
+```sh
+nohup .venv/bin/python run_extract.py --cwd ~/Desktop/ept/chess-salience \
+  >> /tmp/extract_run.log 2>&1 &
+disown
+```
+
+Measured throughput is 2.13 calls/s at concurrency 8, $0.0076 per call, so a 10-minute
+chunk is ~1,280 calls and ~$9.70. The chunk manifest for v2, sized against those rates and
+ordered so every chunk leaves the dataset analyzable, is in the canvas
+"Chunked execution plan". Standing rules: always detach; log `usage` not just `cost_usd`;
+check `cache_read_input_tokens` (v1's was 0 while 90% of input was an identical preamble);
+resume by key, append only; verify between chunks.
+
 ## Step 6 — v2 run
 
 Everything the reviewers asked for that is a matter of collecting data rather than
