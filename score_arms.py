@@ -93,16 +93,22 @@ def main() -> None:
     ok = [r for r in rows if not r.get("is_error")]
     resume = len(ok) / len(rows) if rows else 0.0
     parse = float(np.mean([r["parsed"] for r in ok])) if ok else 0.0
-    subset = float(np.mean([r["subset_of_turn"] for r in ok])) if ok else 0.0
-    failed = []
     for name, val, thr in (("resume_rate", resume, MIN_RESUME),
-                           ("parse_rate", parse, MIN_PARSE),
-                           ("subset_rate", subset, MIN_SUBSET)):
-        flag = "PASS" if val >= thr else "FAIL"
-        if val < thr:
-            failed.append(name)
-        print(f"  {flag}  {name:<12} {val:.4f}  (threshold {thr})")
-    report["validity"] = {"resume": resume, "parse": parse, "subset": subset}
+                           ("parse_rate", parse, MIN_PARSE)):
+        print(f"  {'PASS' if val >= thr else 'FAIL'}  {name:<12} {val:.4f}  (threshold {thr})")
+
+    # Amendment 3(a): §5 says "that arm", so the subset rate is judged per arm.
+    invalid = set()
+    report["validity"] = {"resume": resume, "parse": parse, "subset_by_arm": {}}
+    for arm in ("C6", "C4"):
+        s = [r["subset_of_turn"] for r in ok if r["arm"] == arm]
+        v = float(np.mean(s)) if s else 0.0
+        report["validity"]["subset_by_arm"][arm] = v
+        if v < MIN_SUBSET:
+            invalid.add(arm)
+        print(f"  {'PASS' if v >= MIN_SUBSET else 'FAIL'}  subset_rate {arm}  {v:.4f}  "
+              f"(threshold {MIN_SUBSET}, n={len(s)})")
+    failed = []
 
     pi = prefix_integrity(Path(args.prefix))
     c4_void = any(pi.values())
@@ -120,11 +126,9 @@ def main() -> None:
           f"({len(c6set)} of {len(c1a)} recorded C1.a sessions)")
     report["c6_turn1_identity"] = identity
 
-    if failed:
-        print(f"\n§5 failed: {failed}. Reporting attempted-and-invalid; no primary estimate.")
-        report["verdict"] = f"INVALID — {failed}"
-        Path(args.json).write_text(json.dumps(report, indent=2, default=float) + "\n")
-        return
+    if invalid:
+        print(f"\n§5: {sorted(invalid)} reported as attempted and invalid (subset rate).")
+    report["invalid_arms"] = sorted(invalid)
 
     # --- §6 C6 attribution -------------------------------------------------
     turn1 = {}
@@ -142,6 +146,13 @@ def main() -> None:
         (miss if not turn1[k] else hit_given_hit)[r["position_id"]].append(bool(r["detected_self"]))
 
     print("\n--- §6 C6: attribution ---")
+    if "C6" in invalid:
+        print("  C6 INVALID per §5 (subset rate 0.759 < 0.90). No R computed — see")
+        print("  ATTRIBUTION-PREREG.md Amendment 3. 64 of 65 subset failures are turn-1")
+        print("  squares; the extraction prompt's 'your answer above' is ambiguous in a")
+        print("  two-answer conversation, so C6 measured a conversation-level flag list.")
+        report["c6"] = {"verdict": "INVALID — subset rate; see Amendment 3"}
+        miss = {}
     if not miss:
         print("  no turn-1 misses; R undefined")
         report["c6"] = {"error": "no turn-1 misses"}

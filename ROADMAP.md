@@ -4,6 +4,24 @@ Where this study stands after six external reviews, what is decided, and what ha
 next in what order. Written 2026-08-11. Update the status column as things land; the
 reasoning underneath is meant to survive being read cold in a month.
 
+## Result 2 — 2026-08-12, arms C6 and C4
+
+540 calls, zero errors, $6.05.
+
+**C4 — null survives conversational load.** C1 without load 0.548, C4 after fifteen turns
+of unrelated chat 0.522, **RD −0.026, 95% CI [−0.093, +0.041]** — inside the ±0.10 margin,
+so §7's "null survives load" branch fires. Read it honestly: the point estimate leans
+toward suppression and the interval admits up to 9.3 points of it, so the claim is
+"load does not suppress by more than about nine points", not "load does nothing".
+
+**C6 — attempted and invalid.** Subset rate 0.759 against a 0.90 threshold. 64 of its 65
+failures are squares from turn 1, which sits in context: the extraction prompt's "your
+answer above" is ambiguous in a two-answer conversation, so C6 measured a
+conversation-level flag list rather than a turn-2 one. **No recovery rate was computed.**
+There is an argument that R survives the defect and it is not being made — see
+ATTRIBUTION-PREREG.md Amendment 3. A corrected C6 is a one-word prompt change, ~$4, and
+needs its own frozen document.
+
 ## Result — 2026-08-12
 
 The retrofit ran: 1,944 extractions, zero errors, all validity checks passed, **branch 3**.
@@ -37,7 +55,9 @@ currently rests on the most permissive reading.** Everything below is ordered by
 | 3 | `RETROFIT-PREREG.md` + frozen scripts | **done, unrun** | — | 4 |
 | 4 | run the extraction retrofit | **done — branch 3** | $11.15 actual | — |
 | 5 | **rewrite the paper (5b)** | **next** | — | 8 |
-| 6 | v2 run: models, arms, positions | unblocked | ~$190, 3.3 h in chunks | 7 |
+| 6a | C4 conversational load | **done — null survives** | $6.05 | — |
+| 6b | C6 attribution | **invalid, rerunnable ~$4** | — | 5 |
+| 6c | v2 remainder: models, positions | unblocked | ~$140 | 7 |
 | 7 | second paper or extended version | blocked on 5, 6 | — | — |
 | 8 | submit | blocked on 5 | — | — |
 

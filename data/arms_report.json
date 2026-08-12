@@ -1,0 +1,38 @@
+{
+  "n_records": 540,
+  "validity": {
+    "resume": 1.0,
+    "parse": 0.9944444444444445,
+    "subset_by_arm": {
+      "C6": 0.7592592592592593,
+      "C4": 0.9777777777777777
+    }
+  },
+  "prefix_integrity": {
+    "exclusion_words": [],
+    "algebraic_squares": [],
+    "prompt_echo": []
+  },
+  "c6_turn1_identity": true,
+  "invalid_arms": [
+    "C6"
+  ],
+  "c6": {
+    "error": "no turn-1 misses"
+  },
+  "c4": {
+    "n_positions": 90,
+    "p_a": 0.548148148148148,
+    "p_b": 0.5222222222222223,
+    "rd": -0.02592592592592592,
+    "ci90": [
+      -0.08148148148148147,
+      0.029629629629629627
+    ],
+    "ci95": [
+      -0.09259259259259257,
+      0.040740740740740744
+    ],
+    "verdict": "branch: NULL SURVIVES LOAD \u2014 the equivalence claim extends to a materially more realistic setting."
+  }
+}

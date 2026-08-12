@@ -236,3 +236,44 @@ no hook to discuss how chess is played.
 **This is attempt 3 of 3.** If it fails, C4 is reported as attempted and invalid under §5,
 C6 proceeds regardless, and the paper says the load arm could not be run with a clean
 prefix. That outcome is pre-committed and will be reported with all three failed artifacts.
+
+## Amendment 3 — 2026-08-12, after the data run, before any primary estimate
+
+The pooled subset rate is **0.8685**, below §5's 0.90 threshold, so `score_arms.py` refused
+to report a primary estimate. Diagnosis, run before deciding anything:
+
+| arm | subset rate | verdict |
+|---|---:|---|
+| C4 | **0.9778** | passes |
+| C6 | **0.7593** | fails |
+
+Of C6's 65 subset failures, **64 are squares the model named in turn 1** — the advisory
+answer, which sits in the conversation context — and exactly **1** is a square that appears
+in neither turn.
+
+**Two corrections, and I want the distinction between them on the record.**
+
+**(a) Reporting granularity — an implementation bug, not a threshold change.** §5 says "If a
+check fails, **that arm** is reported as attempted and invalid", singular. `score_arms.py`
+pooled the two arms into one rate, which does not match that sentence. Pooling is fixed so
+each arm is judged on its own rate, as written. This changes no threshold and no branch;
+0.90 stands.
+
+**(b) C6 is invalid, and the cause is my extraction prompt.** The frozen prompt asks for
+"the squares your answer above already singled out". In a two-answer conversation "your
+answer above" is ambiguous, and the model answered for the conversation rather than for its
+most recent turn. C6 therefore measured a conversation-level flag list, not a turn-2 flag
+list, which is not the quantity §6 defines.
+
+**No R is computed.** There is an argument that R survives — the denominator is cases where
+turn 1 *missed*, so a critical square in the extraction could only have come from turn 2 —
+and I am not making it. It is exactly the kind of reasoning that rescues a failed check
+after seeing the failure, and §5 was written first precisely so that this branch binds.
+**C6 stands as attempted and invalid.**
+
+**C4 is unaffected** and its primary estimate is reported per §7.
+
+**A corrected C6 is one word.** "your answer above" → "your most recent answer", plus a
+subset check against turn 2 only. That is a new instrument and would need its own frozen
+document, its own attempt budget, and the failed run kept at `data/arms_raw.jsonl`
+alongside it. Cost is about $4 and ten minutes. Not run under this pre-registration.
