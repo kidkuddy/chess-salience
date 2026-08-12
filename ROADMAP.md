@@ -22,9 +22,9 @@ currently rests on the most permissive reading.** Everything below is ordered by
 | 1 | artifact repository, public-ready | done | — | 8 |
 | 2 | `LABELLING.md` protocol + harness | done, unrun | 15–60 min human | 3 |
 | 3 | `RETROFIT-PREREG.md` + frozen scripts | **done, unrun** | — | 4 |
-| 4 | **run the extraction retrofit** | **next** | ~$54, 20 min | 5, 6, 7 |
+| 4 | **run the extraction retrofit** | **running** | ~$11, ~15 min | 5, 6, 7 |
 | 5 | rewrite the paper around the result | blocked on 4 | — | 8 |
-| 6 | v2 run: models, arms, positions | blocked on 4 | ~$130, overnight | 7 |
+| 6 | v2 run: models, arms, positions | blocked on 4 | ~$190, 3.3 h in chunks | 7 |
 | 7 | second paper or extended version | blocked on 5, 6 | — | — |
 | 8 | submit | blocked on 5 | — | — |
 
@@ -53,7 +53,8 @@ and resuming from anywhere else fails. `run_extract.py` checks this before spend
 anything.
 
 1,944 calls: 1,620 extractions plus a 162-response subsample run three times to measure how
-stable the self-report is at temperature 1.0. Roughly $54 and 20 minutes.
+stable the self-report is at temperature 1.0. Measured at $0.0076/call, so roughly $15 and
+15 minutes — the earlier $54 estimate came from six probe calls, one of which was an outlier.
 
 ### What comes back, and what it means
 
@@ -110,7 +111,8 @@ resume by key, append only; verify between chunks.
 ## Step 6 — v2 run
 
 Everything the reviewers asked for that is a matter of collecting data rather than
-arguing. Roughly $130 and one overnight run. Worth doing *after* step 4, because adding
+arguing. Roughly $190 across 25,110 calls and 3.3 hours, run in chunks (see "Running
+things without losing them" above). Worth doing *after* step 4, because adding
 models to a metric you cannot defend multiplies an unresolved measurement error.
 
 | what | why | who asked | cost |
