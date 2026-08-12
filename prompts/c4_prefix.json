@@ -1,0 +1,17 @@
+{
+  "_comment": "C4 conversational-load prefix, per PROMPTS.md \u00a77. Eight frozen user turns of ordinary chess chat containing NO board information about the test position and NO tactical content. Checked against the frozen exclusion list (hanging, threat, tactic, mate, blunder, safe, attack, best move, danger) and against algebraic square notation; tests/test_c4_prefix.py enforces both.",
+  "_assistant_turns": "Not scripted. The prefix conversation is played ONCE against the model, the realised assistant turns are recorded to data/c4_prefix_realized.json, and every C4 call forks that single session. So the prefix is byte-identical across all C4 calls, it is a real conversation rather than a synthetic one, and it costs eight calls instead of eight per position. See ATTRIBUTION-PREREG.md \u00a73.",
+  "_final_turn": "The prefix ends on an assistant turn. The final user turn of a C4 call is exactly C1.a from prompts.py and is NOT part of this file.",
+  "user_turns": [
+    "Is your club the sort that meets in a pub, or somewhere more formal?",
+    "Ours is upstairs in a community centre. Terrible lighting, decent coffee.",
+    "About twenty regulars. Age range is wild \u2014 teenagers through to a man in his eighties.",
+    "He's been a member since the seventies, apparently. Everyone defers to him on club matters.",
+    "We do. There's a league, so some Thursdays we travel to other clubs across the county.",
+    "The away trips are the fun part, honestly. Long drives, bad service-station food.",
+    "Next month, if I can get the time off work.",
+    "Right, I should get on \u2014 my clock is running and I've been chatting instead of playing."
+  ],
+  "_amendment_1": "Attempt 1's realised prefix failed the \u00a75 integrity check: an assistant turn used the word 'tactic', and the final assistant turn pre-echoed the C1.a prompt verbatim. Root cause was the last user turn soliciting an offer of help. Amended per ATTRIBUTION-PREREG.md Amendment 1; failed artifact kept at data/c4_prefix_realized_attempt1_FAILED.json.",
+  "_amendment_2": "Attempt 2 failed on 'threat', 'tactic', 'blunder'. Root cause: user turns about playing speed and thinking time invite tactical vocabulary. Rewritten to the social and logistical side of club chess only. Attempt 3 of 3 per ATTRIBUTION-PREREG.md Amendment 2."
+}
