@@ -110,6 +110,7 @@ the run it governs.
 | `C6B-PREREG.md` | the corrected attribution arm, declared the final attempt | 2026-08-13 |
 | `JUDGE-PREREG.md` | the blinded judge validation and its limits | 2026-08-13 |
 | `LABELLING.md` | the human labelling protocol — built, blinded, **not run** | 2026-08-11 |
+| `HUMAN-VALIDATION-OUTREACH.md` | verified-rater recruitment and provenance procedure | 2026-08-13 |
 | `HAIKU-JUDGE-PROTOCOL.md` | post-hoc blinded cross-model sensitivity analysis | 2026-08-13 |
 | `GEMINI-JUDGE-PROTOCOL.md` | independent-vendor judge, frozen; run blocked on credentials | 2026-08-13 |
 
