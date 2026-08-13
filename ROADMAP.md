@@ -4,6 +4,38 @@ Where this study stands after six external reviews, what is decided, and what ha
 next in what order. Written 2026-08-11. Update the status column as things land; the
 reasoning underneath is meant to survive being read cold in a month.
 
+## Result 3 — 2026-08-13, C6b and the final analyses
+
+**Experimental work is finished.** Nothing below is blocked on an API call.
+
+**C6b — attribution is mixed.** The corrected arm passes every gate C6 failed: subset
+**0.9963** against 0.759, parse 1.000, resume 1.000. 270 records, zero errors, $3.57.
+**R = P(turn 2 detects | turn 1 missed) = 0.242, 95% CI [0.151, 0.336]** — between the
+0.15 reasoning threshold and the 0.40 elicitation one, so `C6B-PREREG.md` §3's **mixed**
+branch fires and the pre-registration forbids attributing further.
+
+Both declared confound bounds are reported and they help. P(turn 2 detects | turn 1
+detected) is **0.481**, *below* C2's standalone 0.536 — the second question does not buy
+general accuracy, so 0.242 is hard to dismiss as a re-analysis artifact.
+
+Descriptively, and not pre-specified: of the 0.433 shortfall between reconstruction
+(0.981) and advisory reporting (0.548), about **0.109 (25%) is recoverable by asking
+directly** and 0.343 (79%) is not. The shortfall is mostly the model not having the
+threat, with a real but minority elicitation component.
+
+**The four free analyses, all on `detected_self`.** Severity is *still* not supported and
+now fails differently — band RDs are unordered (+0.011 / +0.007 / −0.037), the interaction
+flips sign to −0.048, and C1's slope (+0.100) exceeds C2's (+0.052), the opposite of
+`EXPLORATORY.md`'s prediction. The pre-registered GLMM is fitted at last (binomial GEE
+clustered on position; statsmodels has no crossed-RE binomial): condition coefficient
+−0.0249, p = 0.849, with variant coefficients ~5× larger. Equivalence fires at **±0.075**
+and above and fails at ±0.05, so the defensible claim is "smaller than 7.5 points".
+
+**The paraphrase pairing that breached the margin does not survive.** On `detected_self`
+all three C1 variants against the best C2 give RD +0.022 to +0.063 with every CI containing
+zero. The +0.096 that created the pre-registration contradiction was a `hit_square`
+artifact — which changes the Threats section from an argument into a disclosure.
+
 ## Result 2 — 2026-08-12, arms C6 and C4
 
 540 calls, zero errors, $6.05.
@@ -54,10 +86,11 @@ currently rests on the most permissive reading.** Everything below is ordered by
 | 2 | `LABELLING.md` protocol + harness | done, unrun | 15–60 min human | 3 |
 | 3 | `RETROFIT-PREREG.md` + frozen scripts | **done, unrun** | — | 4 |
 | 4 | run the extraction retrofit | **done — branch 3** | $11.15 actual | — |
-| 5 | **rewrite the paper (5b)** | **next** | — | 8 |
-| 6a | C4 conversational load | **done — null survives** | $6.05 | — |
-| 6b | C6 attribution | **invalid, rerunnable ~$4** | — | 5 |
-| 6c | v2 remainder: models, positions | unblocked | ~$140 | 7 |
+| 5 | **rewrite the paper (5b)** | **next — nothing blocks it** | — | 8 |
+| 6a | C4 conversational load | done — null survives | $6.05 | — |
+| 6b | C6 attribution | done — C6 invalid, **C6b mixed, R = 0.242** | $3.57 | — |
+| 6d | free analyses: severity, GLMM, margins, pairings, config | **done** | free | — |
+| 6c | v2 remainder: models, positions | deferred to a second paper | ~$140 | 7 |
 | 7 | second paper or extended version | blocked on 5, 6 | — | — |
 | 8 | submit | blocked on 5 | — | — |
 
