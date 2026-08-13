@@ -1,16 +1,18 @@
 # chess-salience
 
-A pre-registered behavioural test of whether advisory framing suppresses what a language
-model reports about a chess position it can demonstrably read.
+A frozen-protocol study of how outcome definition changes conclusions about tactical
+reporting under open-ended and explicit chess prompts.
 
 The question: a deployed assistant is usually asked something open ("what should I be
 thinking about here?") rather than interrogated ("is anything hanging?"). If models hold
 back what they represent, advisory framing is where that should show up. Holding the
-position fixed and varying only the framing, does the model still name the critical square?
+position fixed and varying task specificity, does the model name the critical square and
+identify it as tactically relevant?
 
-It does. And the more portable finding is about how that was measured: the same 1,620
-responses, scored three ways, give detection rates from 0.51 to 0.83 and the same answer to
-the comparison.
+The answer depends on the outcome measure. The pre-specified string outcome finds a small
+contrast, but it is not a semantic measure. Model-based semantic instruments produce
+different estimates, including a sign reversal on the Haiku subset. The portable finding
+is measurement sensitivity, not semantic equivalence between prompt types.
 
 This repository holds the whole experiment — five frozen protocols, the generator, the
 prompts, the scorer, every raw model response, the analysis and the results. Every number
@@ -18,7 +20,7 @@ below is reproducible from `data/` with the scripts here.
 
 ## Headline result
 
-One contrast, three operationalisations of "detected", on the same responses.
+The pre-specified comparison and three follow-up operationalisations on the same responses:
 
 | metric | advisory C1 | direct C2 | risk difference | 90% CI |
 |---|---|---|---|---|
@@ -27,8 +29,10 @@ One contrast, three operationalisations of "detected", on the same responses.
 | blinded judge | 0.512 | 0.526 | +0.014 | [−0.033, +0.063] |
 | `hit_move` (strict secondary) | 0.125 | 0.174 | +0.049 | [+0.017, +0.081] |
 
-All inside the pre-registered ±0.10 equivalence margin. The null was registered in advance
-as a publishable outcome, against the hypothesis this study was built to confirm.
+These four estimates lie within the original ±0.10 margin, but only `hit_square` was
+pre-specified before the response run. Moreover, the Haiku sensitivity analysis below does
+not establish equivalence. The supported primary claim is therefore limited to square
+mention; the semantic prompting contrast remains unresolved.
 
 | | |
 |---|---|
@@ -55,9 +59,10 @@ the response. Measured against the blinded judge over all 1,620 responses:
 
 `hit_square` is a near-perfect recall device and a poor classifier — it inflates advisory by
 0.273 and direct by 0.298. Because that inflation is close to symmetric (difference +0.025,
-95% CI [−0.033, +0.084]), the paired contrast is still estimated correctly while the
-absolute rates are not. Symmetry, not accuracy, is what a paired contrast requires, and it
-is measurable on data a study already has.
+95% CI [−0.033, +0.084]) relative to the same-model judge, it preserves that judge's paired
+contrast while overstating absolute rates. The Haiku result shows that this apparent
+cancellation is reference-dependent rather than proof that the semantic contrast is
+correctly estimated.
 
 ### Post-hoc Haiku sensitivity analysis
 
@@ -73,7 +78,8 @@ CI [−0.211, +0.011]. Its three-level agreement with the Sonnet judge was 0.589
 (`κ = 0.316`). This is a valid post-hoc sensitivity result, not human ground truth; both
 models are from Anthropic, and the 180-response sample is much smaller than the primary
 1,620-response analysis. It weakens the claim that semantic operationalisations all give
-the same answer and makes independent human adjudication the cleanest resolution.
+the same answer. Independent human adjudication is future work; until then the semantic
+contrast is reported as unresolved.
 
 The judge's three levels also separate the arms in a way no binary metric can. Advisory
 names the critical square without attributing anything to it in 0.295 of answers against
