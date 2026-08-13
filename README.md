@@ -111,6 +111,7 @@ the run it governs.
 | `JUDGE-PREREG.md` | the blinded judge validation and its limits | 2026-08-13 |
 | `LABELLING.md` | the human labelling protocol — built, blinded, **not run** | 2026-08-11 |
 | `HAIKU-JUDGE-PROTOCOL.md` | post-hoc blinded cross-model sensitivity analysis | 2026-08-13 |
+| `GEMINI-JUDGE-PROTOCOL.md` | independent-vendor judge, frozen; run blocked on credentials | 2026-08-13 |
 
 **One of these fired its own invalidity branch.** C6's extraction prompt asked for "the
 squares your answer above already singled out", which is ambiguous once a conversation has
@@ -144,6 +145,7 @@ arrive in one commit and their timestamps are not independently attested by git.
 | `run_judge.py` | the blinded judge; asserts blinding on each prompt before spending |
 | `build_labelset.py` | draws a labelling stage, blinds it, writes tasks, sealed key and UI |
 | `run_haiku_labels.py` | pinned, blinded Haiku labelling with resumable raw output |
+| `run_gemini_labels.py` | frozen Gemini 2.5 Pro runner; see `GEMINI-RUN-STATUS.md` |
 
 **Analysis.**
 
@@ -160,6 +162,7 @@ arrive in one commit and their timestamps are not independently attested by git.
 | `final_analyses.py` | severity on the clean metric, the GEE, the margin curve, pairings, config |
 | `score_labels.py` | unblinds hand labels and validates each metric against them |
 | `score_haiku_labels.py` | unblinds the Haiku labels and applies the frozen analysis |
+| `score_gemini_labels.py` | Gemini and descriptive three-judge panel analysis; not yet run |
 | `RESULTS.md` | the write-up |
 
 **Data.** Nothing here is derived by hand.
