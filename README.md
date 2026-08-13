@@ -59,6 +59,22 @@ the response. Measured against the blinded judge over all 1,620 responses:
 absolute rates are not. Symmetry, not accuracy, is what a paired contrast requires, and it
 is measurable on data a study already has.
 
+### Post-hoc Haiku sensitivity analysis
+
+After the main analysis, a cross-model judge labelled the 180 responses in the frozen
+stage-1 human-labelling packet. Its protocol was committed before the first call. The
+judge was pinned to `claude-haiku-4-5-20251001`, saw no condition identifiers, and passed
+its declared gates: 300/300 outputs parsed, with exact three-pass agreement on 49/60
+reliability items (0.817; threshold 0.80).
+
+Haiku did **not** reproduce the near-zero contrast. It labelled 0.567 of advisory and
+0.467 of direct responses as detected: RD `p(C2) - p(C1) = -0.100`, 90% position-bootstrap
+CI [−0.211, +0.011]. Its three-level agreement with the Sonnet judge was 0.589
+(`κ = 0.316`). This is a valid post-hoc sensitivity result, not human ground truth; both
+models are from Anthropic, and the 180-response sample is much smaller than the primary
+1,620-response analysis. It weakens the claim that semantic operationalisations all give
+the same answer and makes independent human adjudication the cleanest resolution.
+
 The judge's three levels also separate the arms in a way no binary metric can. Advisory
 names the critical square without attributing anything to it in 0.295 of answers against
 0.220 for direct, and fails to name it at all in 0.193 against 0.254. Advisory casts a
@@ -94,6 +110,7 @@ the run it governs.
 | `C6B-PREREG.md` | the corrected attribution arm, declared the final attempt | 2026-08-13 |
 | `JUDGE-PREREG.md` | the blinded judge validation and its limits | 2026-08-13 |
 | `LABELLING.md` | the human labelling protocol — built, blinded, **not run** | 2026-08-11 |
+| `HAIKU-JUDGE-PROTOCOL.md` | post-hoc blinded cross-model sensitivity analysis | 2026-08-13 |
 
 **One of these fired its own invalidity branch.** C6's extraction prompt asked for "the
 squares your answer above already singled out", which is ambiguous once a conversation has
@@ -126,6 +143,7 @@ arrive in one commit and their timestamps are not independently attested by git.
 | `run_c6b.py` | the corrected attribution arm |
 | `run_judge.py` | the blinded judge; asserts blinding on each prompt before spending |
 | `build_labelset.py` | draws a labelling stage, blinds it, writes tasks, sealed key and UI |
+| `run_haiku_labels.py` | pinned, blinded Haiku labelling with resumable raw output |
 
 **Analysis.**
 
@@ -141,6 +159,7 @@ arrive in one commit and their timestamps are not independently attested by git.
 | `score_judge.py` | judge validity, agreement, and every metric against it |
 | `final_analyses.py` | severity on the clean metric, the GEE, the margin curve, pairings, config |
 | `score_labels.py` | unblinds hand labels and validates each metric against them |
+| `score_haiku_labels.py` | unblinds the Haiku labels and applies the frozen analysis |
 | `RESULTS.md` | the write-up |
 
 **Data.** Nothing here is derived by hand.
@@ -158,6 +177,7 @@ arrive in one commit and their timestamps are not independently attested by git.
 | `data/pilot_*` | the pilot. It crashed partway: 568 of 849 calls |
 | `data/gate_*` | the C3 screening gate, 90 calls over 30 positions |
 | `data/label_*` | the blinded labelling stage 1, drawn and unrun |
+| `data/haiku_labels_*` | Haiku probe, all 300 raw labels, and the scored report |
 
 ## Reproducing
 
@@ -173,6 +193,7 @@ brew install stockfish                        # only to regenerate positions
 .venv/bin/python score_c6b.py                 # the recovery rate
 .venv/bin/python score_judge.py               # judge validation and the metric table
 .venv/bin/python final_analyses.py            # severity, GEE, margins, pairings, config
+.venv/bin/python score_haiku_labels.py        # frozen Haiku sensitivity analysis
 .venv/bin/python tests/test_scorer.py         # scorer unit tests
 .venv/bin/python tests/test_prompts.py        # prompts match PROMPTS.md verbatim
 ```
@@ -190,11 +211,13 @@ Stated here because the repository is the evidence and a reader is entitled to t
 list the paper carries.
 
 - **Single model.** Everything is `claude-sonnet-5`. This is the primary limitation.
-- **The judge shares a family with the subject.** It performs a different task, is blind to
+- **Both judges share a vendor with the subject.** Each performs a different task, is blind to
   the arm, sees one response with no context, and applies a rubric frozen in advance and
-  written for humans — none of which excludes a shared-family bias. It is not human
-  validation. `LABELLING.md` and its harness are here, built and unrun; κ = 0.500 between
-  the self-report and the judge is where a human would arbitrate.
+  written for humans — none of which excludes shared-family bias. Neither is human
+  validation. The post-hoc Haiku judge disagrees materially with the Sonnet judge
+  (three-level κ = 0.316) and produces a wider contrast. `LABELLING.md` and its harness are
+  here, built and unrun; independent human labels are where that disagreement should be
+  resolved.
 - **The retrofit and the judge are post-hoc**, pre-registered before their own runs but
   conceived after the primary result was known.
 - **`PREREGISTRATION.md` §2 contradicts itself** on the adversarial paraphrase pairing. The

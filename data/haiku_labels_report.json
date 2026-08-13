@@ -1,0 +1,76 @@
+{
+  "protocol": "HAIKU-JUDGE-PROTOCOL.md",
+  "model": "claude-haiku-4-5-20251001",
+  "calls": 300,
+  "errors": 0,
+  "cost_usd": 0.26314499999999996,
+  "validity": {
+    "parse_rate": 1.0,
+    "parse_threshold": 0.98,
+    "stability_all_three": 0.8166666666666667,
+    "stability_n": 60,
+    "stability_threshold": 0.8,
+    "passes": true
+  },
+  "label_counts_first_pass": {
+    "0": 39,
+    "2": 93,
+    "1": 48
+  },
+  "primary": {
+    "n_positions": 90,
+    "p_c1": 0.5666666666666667,
+    "p_c2": 0.4666666666666667,
+    "rd": -0.1,
+    "ci90": [
+      -0.2111111111111111,
+      0.011111111111111112
+    ],
+    "ci95": [
+      -0.23333333333333334,
+      0.03333333333333333
+    ]
+  },
+  "equivalence_continuity_check": false,
+  "named_only_rate": {
+    "C1": 0.3,
+    "C2": 0.23333333333333334
+  },
+  "agreement_with_sonnet_judge": {
+    "n": 180,
+    "raw_agreement": 0.5888888888888889,
+    "kappa_three_level": 0.31608133086876156
+  },
+  "metrics_against_haiku_detected": {
+    "detected_self": {
+      "agreement": 0.7166666666666667,
+      "sensitivity": 0.7634408602150538,
+      "specificity": 0.6666666666666666,
+      "kappa": 0.4312267657992565,
+      "tp": 71,
+      "fp": 29,
+      "fn": 22,
+      "tn": 58
+    },
+    "hit_square": {
+      "agreement": 0.6277777777777778,
+      "sensitivity": 0.956989247311828,
+      "specificity": 0.27586206896551724,
+      "kappa": 0.23805913570887025,
+      "tp": 89,
+      "fp": 63,
+      "fn": 4,
+      "tn": 24
+    },
+    "hit_move": {
+      "agreement": 0.6166666666666667,
+      "sensitivity": 0.27956989247311825,
+      "specificity": 0.9770114942528736,
+      "kappa": 0.2505430847212166,
+      "tp": 26,
+      "fp": 2,
+      "fn": 67,
+      "tn": 85
+    }
+  }
+}

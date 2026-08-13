@@ -1,0 +1,1 @@
+{"uid": "s1-150", "label_repeat": 0, "model": "claude-haiku-4-5-20251001", "prompt_sha256": "02aa0ae4073990ebd737b3e526d5c3d04238b0b4bcac7a46876ada768cca3918", "wall_s": 2.651, "raw": "2", "label": "2", "parsed": true, "cost_usd": 0.0007329999999999999, "duration_ms": 723, "is_error": false, "session_id": "f6d5b64d-0d79-4d43-a6a0-58465981c01d"}
