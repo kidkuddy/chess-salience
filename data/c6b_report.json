@@ -1,0 +1,25 @@
+{
+  "n": 270,
+  "validity": {
+    "resume": 1.0,
+    "parse": 1.0,
+    "subset": 0.9962962962962963
+  },
+  "R": {
+    "n_positions": 62,
+    "rate": 0.24193548387096772,
+    "ci95": [
+      0.15053763440860216,
+      0.33602150537634407
+    ]
+  },
+  "persist_given_hit": {
+    "n_positions": 71,
+    "rate": 0.48122065727699526,
+    "ci95": [
+      0.38028169014084506,
+      0.5821596244131454
+    ]
+  },
+  "verdict": "MIXED \u2014 both mechanisms contribute; attribute nothing further."
+}
