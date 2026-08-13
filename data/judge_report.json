@@ -1,0 +1,68 @@
+{
+  "n_records": 1944,
+  "n_judged": 1620,
+  "validity": {
+    "parse": 1.0,
+    "stability": 0.9074074074074074
+  },
+  "primary": {
+    "n": 1620,
+    "sensitivity": 0.7788347205707491,
+    "specificity": 0.7201540436456996,
+    "kappa": 0.499745470054896,
+    "agreement": 0.7506172839506173
+  },
+  "verdict": "MODERATE \u2014 level claims reported with the judge rate beside them; the two instruments disagree on which responses count.",
+  "metrics": {
+    "detected_self": {
+      "n": 1620,
+      "sensitivity": 0.7788347205707491,
+      "specificity": 0.7201540436456996,
+      "kappa": 0.499745470054896,
+      "agreement": 0.7506172839506173
+    },
+    "hit_square": {
+      "n": 1620,
+      "sensitivity": 0.985731272294887,
+      "specificity": 0.35173299101412064,
+      "kappa": 0.3455246180390589,
+      "agreement": 0.6808641975308642
+    },
+    "hit_move": {
+      "n": 1620,
+      "sensitivity": 0.27705112960760997,
+      "specificity": 0.9884467265725289,
+      "kappa": 0.2581801017651564,
+      "agreement": 0.6191358024691358
+    }
+  },
+  "rd_judge": {
+    "c1": 0.5123456790123456,
+    "c2": 0.5259259259259259,
+    "rd": 0.013580246913580249,
+    "ci95": [
+      -0.043209876543209874,
+      0.07407407407407407
+    ],
+    "ci90": [
+      -0.03333333333333334,
+      0.06296296296296297
+    ],
+    "n_positions": 90
+  },
+  "named_only": {
+    "by_arm": {
+      "C1": {
+        "label1": 0.29506172839506173,
+        "label2": 0.5123456790123457,
+        "label0": 0.1925925925925926
+      },
+      "C2": {
+        "label1": 0.21975308641975308,
+        "label2": 0.5259259259259259,
+        "label0": 0.254320987654321
+      }
+    },
+    "delta": -0.07530864197530865
+  }
+}
