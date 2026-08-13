@@ -4,6 +4,39 @@ Where this study stands after six external reviews, what is decided, and what ha
 next in what order. Written 2026-08-11. Update the status column as things land; the
 reasoning underneath is meant to survive being read cold in a month.
 
+## Result 4 — 2026-08-13, the blinded judge
+
+1,944 calls, zero errors, $17.45. `JUDGE-PREREG.md` §4 gates both pass: parse 1.000,
+stability 0.907 across 162 thrice-judged responses. This substitutes for the human
+labelling in `LABELLING.md`, which is not being run, and the paper must say so in those
+words rather than calling it human validation.
+
+**Primary — kappa 0.500**, §6's **moderate** branch. `detected_self` against the judge:
+sensitivity 0.779, specificity 0.720, raw agreement 0.751. The level claims get the judge
+rate reported beside them; they are not presented as settled.
+
+**Secondary, and the more important result — the equivalence conclusion triangulates.**
+
+| metric | sens | spec | RD | 95% CI |
+|---|---|---|---|---|
+| `hit_square` | 0.986 | 0.352 | +0.020 | — |
+| `detected_self` | 0.779 | 0.720 | −0.006 | [−0.069, +0.058] |
+| judge label == 2 | reference | reference | **+0.014** | [−0.043, +0.074] |
+
+Three instruments with sharply different error profiles disagree about *which* responses
+count and agree that the arms do not differ. Equivalence fires at ±0.10 on the judge
+metric. This is §8's argument confirmed rather than asserted: **a metric can be a poor
+detector and an unbiased comparator.** It is a much stronger position than any single
+metric defended as correct, and it is the paper's thesis demonstrated on its own data.
+
+**A new mechanistic finding the two-level metrics could not see.** The three-level labels
+split the arms apart. Advisory casts a **wider net**: it names the critical square without
+attributing anything to it more often (0.295 vs 0.220) and fails to name it at all *less*
+often (0.193 vs 0.254). Direct answers are narrower — they miss the square outright more
+and commit when they hit. Net detection comes out equal by two different routes. That
+matches the diffuseness result exactly (advisory flags 6.03 squares, direct 3.79) and
+gives it a mechanism.
+
 ## Result 3 — 2026-08-13, C6b and the final analyses
 
 **Experimental work is finished.** Nothing below is blocked on an API call.
@@ -83,7 +116,7 @@ currently rests on the most permissive reading.** Everything below is ordered by
 |---|---|---|---|---|
 | 0 | reviewer synthesis and ranking | done | — | — |
 | 1 | artifact repository, public-ready | done | — | 8 |
-| 2 | `LABELLING.md` protocol + harness | done, unrun | 15–60 min human | 3 |
+| 2 | `LABELLING.md` protocol + harness | built, not run — superseded by the judge | 15–60 min human | — |
 | 3 | `RETROFIT-PREREG.md` + frozen scripts | **done, unrun** | — | 4 |
 | 4 | run the extraction retrofit | **done — branch 3** | $11.15 actual | — |
 | 5 | **rewrite the paper (5b)** | **next — nothing blocks it** | — | 8 |
