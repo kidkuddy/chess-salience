@@ -178,10 +178,11 @@ brew install stockfish                        # only to regenerate positions
 ```
 
 Re-running the model calls needs API credentials and will not reproduce the recorded
-outputs: temperature is 1.0 and hosted models are not deterministic. Repeats are how that
-variance is handled, not seeds. The generator is seeded and its seed is recorded per
-position. The retrofit and attribution runners resume recorded sessions by id, which only
-works from the original working directory.
+outputs. Requests explicitly set `thinking: {type: "disabled"}` and omit `temperature`,
+`top_p`, and `top_k`; hosted outputs remain stochastic. Repeats are how that variance is
+handled, not seeds. The generator is seeded and its seed is recorded per position. The
+retrofit and attribution runners resume recorded sessions by id, which only works from the
+original working directory.
 
 ## Limitations
 

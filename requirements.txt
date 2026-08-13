@@ -4,6 +4,8 @@
 numpy==2.5.1
 scipy==1.18.0
 chess==1.11.2
+pandas==3.0.5
+statsmodels==0.14.6
 
 # Only needed to re-run the model calls (run_gate.py, run_pilot.py). The analysis
 # scripts read data/*.jsonl and do not import it.
